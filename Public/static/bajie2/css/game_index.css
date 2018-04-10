@@ -1,0 +1,7 @@
+html,body{width: 100%;height: 100%;background:#2e3353;background-size:cover;}
+#wrap{width: 100%;height: 100%;padding-top: 6rem;box-sizing: border-box;background:url(../images/bg.png) no-repeat center center;background-size:cover;}
+#togame{display: block;width: 7rem;height: 2.2rem;color: #6f4952;border: 2px solid #6f4952;text-align: center;line-height: 2.2rem;font-size: 1.2rem;position:fixed;left:50%;margin-left: -3.5rem;bottom:3rem;}
+#togame:active{opacity: 0.8;}
+@keyframes full{
+	100%{width: 100%;}
+}

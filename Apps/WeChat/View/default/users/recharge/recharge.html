@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .router-link-active {
+            color: #ff5d5b
+        }
+        .numbtn {
+            background: #ef4f4f !important;
+            color: #fff !important;
+        }
+        .header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            height: 3.5rem;
+            background: url("__ROOT__/Apps/WeChat/View/default/images/img/bj.jpg");
+			background-size: 100% 3.5rem;
+        }
+        .header .fl {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 2rem;
+            flex: 0 0 2rem;
+            text-align: center;
+            margin: 0.8rem 0;
+            line-height: 2.4rem;
+            border-right: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 0.35rem;
+            font-weight: 600;
+        }
+        .header .fr {
+            width: 100%;
+            padding: 0.2rem 0.2rem 0 0.5rem;
+        }
+        .header .fr .top {
+            height: 1rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        .header .fr .top .balance {
+            line-height: 1rem;
+            color: #fff;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            font-size: 0.32rem;
+            text-align: left;
+        }
+        .header .fr .middle {
+            font-size: 0.6rem;
+            color: #fff;
+            margin: 0.2rem 0 0.3rem 0;
+        }
+        .tabs {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 0.5rem 0.3rem 0;
+        }
+        .tabs .tab {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            text-align: center;
+            background: #fff;
+            height: 0.9rem;
+            line-height: 0.9rem;
+            color: #999;
+            font-size: 0.4rem;
+            border-radius: 5px;
+        }
+        .tabs .tab + .tab {
+            margin-left: 10px;
+        }
+        .btn-block {
+            height: 0.8rem;
+        }
+        .rechargeps {
+            margin-top: 0.2rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class='header'>
+        <div class='fl'>{$user['loginName']}</div>
+        <div class='fr'>
+            <ul>
+                <li class='top'>
+                    <span class='balance'>可用余额</span>
+                </li>
+                <li class='middle'><?php echo sprintf('%.2f',$user['userMoney']+$user['redPacketMoney']);?></li>
+            </ul>
+        </div>
+    </div>
+    <div>  
+        <ul class='tabs'>
+            <li class='tab' :class='selected==21?"numbtn":""' @click='select(21)'>21</li>
+            <li class='tab' :class='selected==50?"numbtn":""' @click='select(50)'>50</li>
+            <li class='tab' :class='selected==100?"numbtn":""' @click='select(100)'>100</li>
+        </ul>
+        <ul class='tabs'>
+            <li class='tab' :class='selected==200?"numbtn":""' @click='select(200)'>200</li>
+            <li class='tab' :class='selected==500?"numbtn":""' @click='select(500)'>500</li>
+            <li class='tab' :class='selected==1000?"numbtn":""' @click='select(1000)'>1000</li>
+        </ul>
+    </div>
+    <template>
+        <div style='padding: 0 .3rem'>
+            <input type="hidden" id="recharge_money" value="21"/>   
+            <yd-button size="large" type="danger" onclick="recharge();" id="rechge_bott">确认充值</yd-button>
+            <div class='rechargeps'>
+                <p>充值由第三方收付款平台提供服务，充值秒到账。</p>
+                <p>如您充值遇到问题，请联系客服QQ:{$CONF['qqNo']}。</p>
+            </div>
+        </div>
+    </template>
+    <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed"
+            style="color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); font-size: 0.24rem;">
+        <a href="{:U('Users/Index')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-home" style="font-size: 0.54rem;"></i> 
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">首页</span>
+        </a>
+        <a href="{:U('Users/toUserInfo')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-ucenter" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">我的</span>
+        </a>
+    </footer>
+</div>
+<!-- 引入 Vue -->
+<script src="//vuejs.org/js/vue.min.js"></script>
+<!-- 引入组件库 -->
+<script src="//unpkg.com/vue-ydui/dist/ydui.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data(){
+            return{
+                selected:21,
+                pay: false,
+            }
+        },
+        methods: {
+            select(id){
+                this.selected = id
+                $("#recharge_money").val(id);
+            }
+        }
+    })
+</script>
+
+
+<script>
+	function recharge(){
+        $('#rechge_bott').attr('onclick','').css('background-color','#bbb');
+		setTimeout(function(){
+            $('#rechge_bott').attr('onclick','recharge()').css('background-color','#ef4f4f');
+        },6000);    
+		
+		var recharge_money = $("#recharge_money").val();
+		$.ajax({ 
+	    	type:'post',
+	    	url:"{:U('Recharge/create')}",
+	    	data:{recharge_money:recharge_money},
+	    	success:function(result){
+	    		layer.open({
+	    		    content: result.msg
+	    		    ,skin: 'msg'
+	    		    ,time: 1 //3秒后自动关闭
+	    		  });
+        		if(result.status == 1){
+	    			window.location.href = result.url;
+	    		}
+	         }
+	    });
+	}
+</script>
+
+</body>
+</html>

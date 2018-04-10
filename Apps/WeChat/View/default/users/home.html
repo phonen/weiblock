@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页-{$CONF['mallName']}</title>
+    <style>
+        .router-link-active {
+            color: #ff5d5b;
+        }
+        .cell-icon img {
+            height: .5rem;
+        }
+        .cell-icon img {
+            height: 0.5rem;
+        }
+        .header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            height: 180px;
+        	background: url("__ROOT__/Apps/WeChat/View/default/images/img/bj.jpg");
+            background-size: 100% 100%;
+        }
+        .header .fl {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 2rem;
+            flex: 0 0 3rem;
+            text-align: center;
+            margin: 0.8rem 0;
+            line-height: 2.4rem;
+            border-right: 2px solid rgba(255, 255, 255, 0.2);
+            color: #f2d39e;
+            font-size: 14px;
+			padding-top: 35px;
+        }
+        .header .fr {
+            width: 100%;
+            padding: 0.2rem 0.2rem 0 0.5rem;
+        }
+        .header .fr .top {
+            height: 1rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+			width: 2.8rem;
+        }
+        .header .fr .top .balance {
+            line-height: 1rem;
+            color: #f2d39e;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            font-size: 10px;
+            
+        }
+		.header .fr .top .balancedata{
+			width: 1rem;
+			line-height: 1.0rem;
+			font-size: 11px;
+			font-weight: bold;
+			color: #f2d39e;
+			text-align: left;
+			float: left;
+		}
+		
+        .follow {
+            width: 2rem;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 0.15rem;
+			margin-left: 40px;
+		   color: #fff;
+            font-size: 0.25rem;
+        }
+        .header .fr .middle {
+            font-size: 10px;
+            color: #f2d39e;
+            margin: 0.2rem 0 0.3rem 0;
+        }
+		
+		.header .fr .middle .balancedata{
+			font-size: 11px;
+			font-weight: bold;
+		}
+		
+        .header .fr .bottom .Recharge,
+        .header .fr .bottom .Withdrawals {
+            display: inline-block;
+            width: 1.2rem;
+            height: 0.5rem;
+            text-align: center;
+            line-height: 0.5rem;
+            font-size: 0.3rem;
+            border-radius: 5px;
+			
+        }
+		.header .fr .bottom{
+			padding-top: 40px;
+		}
+        .header .fr .bottom .Recharge {
+            background: #f9f3e8;
+			color: red;
+			font-weight: bold;
+            /*box-shadow: 0px 2px 0px #c23341;*/
+        }
+        .header .fr .bottom .Withdrawals {
+           /* background: #ff9c97;*/
+		   color: #f2d39e;
+            margin-left: 15px;
+			border: 1px solid #f2d39e;
+			font-weight: bold;
+            /*box-shadow: 0px 2px 0px #b05958;*/
+        }
+        .content {
+            padding: 0.3rem;
+        }
+        .content .gray,
+        .content .ps {
+            color: #9e9e9e;
+        }
+        .content .red {
+            color: #ff5d5b;
+        }
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            z-index: 100;
+        }
+        .mask .close {
+            position: absolute;
+            right: 0%;
+            top: 12%;
+            transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+        }
+        .mask .img {
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 18%;
+            transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+        }
+		
+		
+		.course{
+			height: 110px;
+			width: 100%;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/course.jpg");
+			background-size: 100% 100%;
+		}
+		
+		.course a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+		.three{
+			margin-top: 5px;
+			height: 190px;
+			width: 100%;
+		}
+		
+		.three .threeLeft{
+			float: left;
+			width: 55%;
+			height: 100%;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/begin.jpg");
+			background-size: 100% 100%;
+			
+		}
+		
+		.three .threeLeft a{
+		
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.three .threeRight{
+			display: inline-block;
+			float: right;
+			width: 45%;
+			height: 100%;
+			padding-left: 3px;
+		}
+		.three .threeRight .rtop{
+			width: 100%;
+			height: 49%;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/hb.jpg");
+			background-size: 100% 100%;
+			
+		}
+		
+		.three .threeRight .rtop a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.three .threeRight .rbottom{
+			margin-top: 4px;
+			width: 100%;
+			height: 49%;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/wt.jpg");
+			background-size: 100% 100%;
+		}
+		
+		.three .threeRight .rbottom a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.four{
+			position: absolute;
+			margin-top: 5px;
+			width:100%;
+			height: 20%;
+			background: blue;
+			
+		}
+		
+		.four .bleft{
+			display: inline-block;
+			width: 33%;
+			height: 100%;
+			background: black;
+			float: left;
+			padding-right: 2px;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/mx.jpg");
+			background-size: 100% 100%;
+		}
+		
+		.four .bleft a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+		.four .bmidlle{
+			display: inline-block;
+			width: 34%;
+			height: 100%;
+			background: red;
+			float: left;
+			padding-left: 1px;
+			padding-right: 1px;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/dl.jpg");
+			background-size: 100% 100%;
+		
+		}
+		
+		.four .bmidlle a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+		.four .bright{
+			float: right;
+			display: inline-block;
+			width: 33%;
+			height: 100%;
+			background: black;
+			float: left;
+			padding-left: 2px;
+			background: url("__ROOT__/Apps/WeChat/View/default/images/img/kf.jpg");
+			background-size: 100% 100%;
+		
+		}
+		
+		.four .bright a{
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+    </style>
+    <?php
+		require_once 'ThinkPHP/Library/Vendor/Wechat/WSTWechat.class.php';
+		$we = new WSTWechat($GLOBALS['CONFIG']['WeiXinAppId'],$GLOBALS['CONFIG']['WeiXinAppKey']);
+		$data = $we->getJsSignature('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+
+		?>
+</head>
+<body style='background-color:#cfcdcd'>
+<div id="app" >
+    <div >
+        <div class='header'>
+            <div class='fl'>ID:{$info['userId']}</div>
+            <div class='fr'>
+                <ul>
+                    <li class='middle'>
+                        <span class='balance'>余额:&nbsp;</span>
+						<span class='balancedata' id='balance'><?php echo sprintf('%.2f',$info['userMoney']+$info['redPacketMoney']);?></span>
+						<span class='follow' @click='popup'>关注加群</span>
+                        <!--<span class='follow' @click='popup'>关注</span>-->
+                    </li>
+                    <li class='middle'>
+                        <span class='balance'>佣金:&nbsp;</span>
+						<span class='balancedata' id='balance'><?php echo sprintf('%.2f',$info['distrubutMoney']);?></span>
+                        
+                    </li>
+                    
+                    <li class='bottom'>
+                        <a href="{:U('Recharge/index')}" class='Recharge'>充值</a>
+                        <a href="{:U('CashDraws/withdrawals')}" class='Withdrawals'>提现</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		 <template>
+            <yd-rollnotice autoplay="4000" height='40' align='center'>
+                <yd-rollnotice-item>
+                    <!--<img src="__ROOT__/Apps/WeChat/View/default/images/img/lb.png" alt="" width=20>&nbsp;&nbsp;-->
+                    <!--<p class='rollnotice'>招商加盟热线&nbsp;<span style='color: red'>QQ230489896</span>&nbsp</p>
+                    --><p class='rollnotice'>{$CONF['notice']} &nbsp</p>
+                </yd-rollnotice-item>
+            </yd-rollnotice>
+        </template>
+		<div class='course'>
+			<a href="{:U('Users/reward')}"></a>
+		</div>
+		<div class='three'>
+			<div class='threeLeft'>
+				<a href="{:U('Games/index')}"></a>
+			</div>
+			<div class='threeRight'>
+				<div class='rtop'>
+					<a href="{:U('Users/sign')}"></a>
+				</div>
+				<div class='rbottom'>
+					<a href="{:U('Users/problem')}"></a>
+				</div>
+			</div>
+		</div>
+		<div class='four'>
+			<div class='bleft'><a href="{:U('Users/dealDetails')}"></a></div>
+			<div class='bmidlle'><a href="{:U('Users/agent')}"></a> </div>
+			<div class='bright'> <a href="{:U('Users/contact')}"></a></div>
+		</div>
+        <!--<div class='content'>
+            <template>
+                <yd-cell-group>
+                    <yd-cell-item arrow type="a" href='{:U('Users/reward')}'>
+                        <img slot="icon" src="__ROOT__/Apps/WeChat/View/default/images/img/course.png">
+                        <span slot="left">新手指南</span>
+                        <span slot="right" class='gray'>新手必看</span>
+                    </yd-cell-item>
+                </yd-cell-group>
+            </template>
+            <template>
+                <yd-cell-group>
+                    <yd-cell-item arrow type="a" href='{:U('Users/agent')}'>
+                        <img slot="icon" src="__ROOT__/Apps/WeChat/View/default/images/img/agent.png">
+                        <span slot="left">代理赚钱</span>
+                        <span slot="right" class='gray'>躺着也能赚钱</span>
+                    </yd-cell-item>
+                </yd-cell-group>
+            </template>
+            <template>
+                <yd-cell-group>
+                    <yd-cell-item arrow type="a" href='{:U('Games/index')}'>
+                        <img slot="icon" src="__ROOT__/Apps/WeChat/View/default/images/img/game.png">
+                        <span slot="left">进入游戏</span>
+                        <span slot="right" class='red'>马上埋雷</span>
+                    </yd-cell-item>
+                </yd-cell-group>
+            </template>
+            <p class='ps'>有史以来最公正的埋雷游戏，轻松日赚万金</p>
+        </div>-->
+        <div class='mask' v-show='extension' style='display:none'> 
+            <div class='close' @click='close'>
+                <yd-icon name="error-outline" size=".6rem" color="#FFF"></yd-icon>
+            </div>
+             <img class='img' src="{:WSTDomain()}/{$CONF['qrcode']}" width="80%" >
+        </div>
+       <!-- <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed"
+                style="color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); font-size: 0.24rem;">
+            <a href="{:U('Users/Index')}" class="tabbar-item router-link-exact-active router-link-active tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-home" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+                <span class="tabbar-txt">首页</span>
+            </a>
+            <a href="{:U('Users/toUserInfo')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-ucenter" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+                <span class="tabbar-txt">我的</span>
+            </a>
+        </footer>-->
+    </div>
+    <template>
+        <div>
+            <yd-popup v-model="show" position="center" width="80%">
+                <img class='redPackets' src="__ROOT__/Apps/WeChat/View/default/images/img/redPackets.png" alt="" width=100% onclick='receive()'>
+            </yd-popup>
+        </div>
+    </template>
+
+</div>
+
+<script>
+	function receive(){
+		$.ajax({
+	    	type:'post',
+	    	url:"{:U('Users/first')}",
+	    	success:function(result){
+	    		layer.open({
+	    		    content: result.msg
+	    		    ,skin: 'msg'
+	    		    ,time: 1 //3秒后自动关闭
+	    		  });
+	    		$("#balance").html(result.cur_money);
+	    		vm.show = false;
+	         }
+	    });
+	}
+</script>
+<script>
+    var vm =new Vue({
+        el: '#app', 
+        data(){
+            return {
+                extension: false,
+                show: false
+            }
+        },
+        created() {
+
+        },
+        mounted() {
+        	var check = <?php echo $info['is_first_login']?'1':'0';?>;
+            if(check==1){
+            	this.show = false;
+            	
+            }else{
+            	this.show = false;
+            };
+        },
+        methods: {
+            popup(){
+                this.extension = true
+            },
+            close(){
+                this.extension = false
+            }
+        },
+    })
+</script>
+	    
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '<?php echo $we->appId;?>', //公众号的唯一标识
+    timestamp: '<?php echo $data['timestamp'];?>', //生成签名的时间戳
+    nonceStr: '<?php echo $data['noncestr'];?>', //生成签名的随机串
+    signature: '<?php echo $data['signature'];?>',//签名
+    jsApiList: [ //需要使用的JS接口
+       	'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'onMenuShareQZone'
+    ]
+});
+wx.ready(function(){
+	var shareData = {
+			title: '{$info["share"]["title"]}',
+			desc: '{$info["share"]["desc"]}',
+			link: '{$info["share"]["link"]}',
+			imgUrl: '{$info["share"]["imgUrl"]}'
+		};
+	wx.onMenuShareAppMessage(shareData);
+	wx.onMenuShareTimeline(shareData);
+	wx.onMenuShareQQ(shareData);
+	wx.onMenuShareWeibo(shareData);
+	wx.onMenuShareQZone(shareData);
+});
+</script>
+</body>
+</html>

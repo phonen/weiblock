@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{$CONF['mallTitle']}后台管理中心</title>
+      <link href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="__ROOT__/Apps/Admin/View/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+      <!--[if lt IE 9]>
+      <script src="__PUBLIC__/js/html5shiv.min.js"></script>
+      <script src="__PUBLIC__/js/respond.min.js"></script>
+      <![endif]-->
+      <script src="__PUBLIC__/js/jquery.min.js"></script>
+      <script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script src="__PUBLIC__/js/common.js"></script>
+      <script src="__PUBLIC__/plugins/plugins/plugins.js"></script>
+   </head>
+   <script>
+   function del(id,type){
+	   var msg = (type==1)?'该会员为商家会员，您确定要删除该商家信息吗？':'您确定要删除该会员信息吗?';
+	   Plugins.confirm({title:'信息提示',content:msg,okText:'确定',cancelText:'取消',okFun:function(){
+		   Plugins.closeWindow();
+		   Plugins.waitTips({title:'信息提示',content:'正在操作，请稍后...'});
+		   $.post("{:U('Admin/Users/del')}",{id:id},function(data,textStatus){
+					var json = WST.toJson(data);
+					if(json.status=='1'){
+						Plugins.setWaitTipsMsg({content:'操作成功',timeout:1000,callback:function(){
+						   location.reload();
+						}});
+					}else{
+						Plugins.closeWindow();
+						Plugins.Tips({title:'信息提示',icon:'error',content:'操作失败!',timeout:1000});
+					}
+				});
+	   }});
+   }
+   
+   
+   
+   function toRecharge(id){
+	   var url = "{:U('Admin/Users/toRecharge',array('id'=>'__0'))}".replace('__0',id);
+	   Plugins.Modal({url:url,title:'编辑账号信息',width:500});
+   }
+   
+   function toEditMoney(id){
+	   var url = "{:U('Admin/Users/toEditMoney',array('id'=>'__0'))}".replace('__0',id);
+	   Plugins.Modal({url:url,title:'扣除可用资金',width:500});
+   }
+   
+   function toTodayDistrtMoney(id){
+	   var url = "{:U('Admin/Users/toTodayDistrtMoney',array('id'=>'__0'))}".replace('__0',id);
+	   Plugins.Modal({url:url,title:'今日佣金',width:500});
+   }
+   </script>
+   <body class='wst-page'>
+    <form method='post' action='{:U("Admin/Users/index")}'>
+       <div class='wst-tbar'>
+       用户名：<input type='text' id='loginName' name='loginName' class='form-control wst-ipt-10' value='{$loginName}'/>
+      用户编号：<input type='text' id='userId' name='userId' class='form-control wst-ipt-10' value='{$userId}'/>    
+       <!--
+       手机号码：<input type='text' id='userPhone' name='userPhone' class='form-control wst-ipt-10' value='{$userPhone}'/>  
+       电子邮箱：<input type='text' id='userEmail' name='userEmail' class='form-control wst-ipt-10' value='{$userEmail}'/>  
+       会员类型：<select id='userType' name='userType' class="form-control wst-ipt-10">
+           <option value='-1' <if condition=" $userType eq -1 ">selected</if>>全部</option>
+           <option value='0' <if condition=" $userType eq 0 ">selected</if>>普通会员</option>
+           <option value='1' <if condition=" $userType eq 1 ">selected</if>>店铺会员</option>
+       </select>  
+  --><button type="submit" class="btn btn-primary glyphicon glyphicon-search">查询</button> 
+  <!--<php>if(in_array('hylb_01',$WST_STAFF['grant'])){</php>
+       <a class="btn btn-success glyphicon glyphicon-plus" href='{:U("Admin/Users/toEdit")}' style='float:right'>新增</a>
+  <php>}</php>     
+       --></div>
+       </form>
+       <div class="wst-body">
+        <table class="table table-hover table-striped table-bordered wst-list">
+           <thead>
+             <tr>
+               <th width='30'>序号</th> 
+               <th width='80'>用户ID</th>
+               <th width='60'>用户号</th>
+               <th width='60'>微信昵称</th>
+               <th width='80'>可用资金</th> 
+               <th width='40'>红包账户</th>
+               <th width='40'>佣金账户</th>
+               <th width='130'>操作</th>
+             </tr>
+           </thead>
+           <tbody>
+            <volist name="Page['root']" id="vo" key='i'>
+             <tr>
+               <td>{$i}</td>
+               <td>{$vo['userId']}</td>
+               <td>{$vo['loginName']}</td>
+               <td>{$vo['userName']}</td>
+               <td>{$vo['userMoney']}&nbsp;</td>
+               <td>{$vo['redPacketMoney']}&nbsp;</td>
+               <td>{$vo['distributMoney']}&nbsp;</td>
+               <td>
+               <php>if(in_array('hylb_02',$WST_STAFF['grant'])){</php>
+               <a class="btn btn-default glyphicon glyphicon-pencil" href="{:U('Admin/Users/toEdit',array('id'=>$vo['userId']))}">修改</a>&nbsp;
+               <php>}</php>
+               <php>if(in_array('hylb_03',$WST_STAFF['grant'])){</php>
+               <button type="button" class="btn btn-default glyphicon glyphicon-trash" onclick="javascript:del({$vo['userId']},{$vo['userType']})">刪除</button>
+               <php>}</php>
+               <a class="btn btn-default glyphicon glyphicon-pencil" href="javascript:toRecharge({$vo['userId']})">充值</a>&nbsp;
+               <!-- 增加修改可用资金 zzc-->
+               <a class="btn btn-default glyphicon glyphicon-pencil" href="javascript:toEditMoney({$vo['userId']})">扣除资金</a>&nbsp; 
+                <a class="btn btn-default glyphicon glyphicon-pencil" href="javascript:toTodayDistrtMoney({$vo['userId']})">今日佣金</a>&nbsp;
+
+               </td>
+             </tr>
+             </volist>
+             <tr>
+                <td colspan='11' align='center'>{$Page['pager']}</td>
+             </tr>
+           </tbody>
+        </table>
+       </div>
+   </body>
+</html>

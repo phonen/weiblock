@@ -1,0 +1,43 @@
+     <script type="text/javascript">
+   callpay();
+	//调用微信JS api 支付
+    function jsApiCall(){
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest',
+            <?php echo $jsApiParameters; ?>,
+            function(res){
+                if(res.err_msg=="get_brand_wcpay_request:ok"){
+                	layer.open({  
+                	    type: 2
+                	    ,content: '查询结果中...'
+                	  }); 
+                	window.setTimeout(function(){
+                    	location.href = "{$returnUrl}";
+                	},1000);
+                }
+                if(res.err_msg=="get_brand_wcpay_request:cancel"){
+                	alert('您取消了支付');
+                	location.href = "{:U('Games/index')}";
+                }
+                if(res.err_msg=="get_brand_wcpay_request:fail"){
+                	alert(res.err_code+res.err_desc+res.err_msg);
+                	alert('支付失败');
+                	location.href = "{:U('Games/index')}";
+                }
+            }
+        );
+     
+    };
+    function callpay(){
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+	</script>

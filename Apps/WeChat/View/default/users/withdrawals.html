@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .router-link-active {
+            color: #ff5d5b
+        }
+
+        .h1 {
+            background: #ff5d5b;
+            color: #fff;
+            line-height: 2.5;
+            text-align: center;
+            font-size: .35rem;
+        }
+
+        .withdrawalsbox {
+            padding: .3rem .2rem
+        }
+			.foot{
+			width: 100%;
+			height: 30px;
+			position: fixed;
+			bottom: 0;
+			text-align: center;
+			background: #f16262;
+			color: #fff;
+		}
+		
+		.foot a{
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 3px;
+		}
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 class='h1'>现金余额&nbsp;¥&nbsp;{$user['userMoney']}豆&nbsp;&nbsp;红包余额&nbsp;¥&nbsp;{$user['redPacketMoney']}豆</h1>
+    <div class='withdrawalsbox'>
+        <template>
+            <yd-cell-group>
+                <yd-cell-item arrow type="a" href='{:U('CashDraws/cash')}'>
+                    <yd-icon slot="icon" name="weixin" size=".6rem" color='#4CE241'></yd-icon>
+                    <span slot="left">微信提现</span>
+                </yd-cell-item>
+            </yd-cell-group>
+        </template>
+    </div>
+	<div class='foot'><a href="{:U('Users/Index')}" >返回首页</a>
+	</div>
+	<!--
+    <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed"
+            style="color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); font-size: 0.24rem;">
+        <a href="{:U('Users/Index')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-home" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">首页</span>
+        </a>
+        <a href="{:U('Users/toUserInfo')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-ucenter" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">我的</span>
+        </a>
+    </footer>-->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+        <title>首页   - {$CONF['mallTitle']}</title>
+        <link rel="stylesheet" href="__ROOT__/Apps/WeChat/View/default/css/index.css">
+        <include file="./Apps/WeChat/View/default/common_search.html" />
+        <include file="./Apps/WeChat/View/default/common_menu.html" />
+        <section class="ui-container">
+        <?php if($indexAds){ ?>
+        <div class="ui-slider">
+		    <ul class="ui-slider-content" style="width: 300%">
+		    	<volist name="indexAds" id="ad">
+		        <li><span><a href="{$ad['adURL']}"><img style="width:100%; height:100%; display:block;" src="__ROOT__/{$ad['adFile']}"></a></span></li>
+		        </volist>
+		    </ul>
+		</div>
+		<?php } ?>
+		<div class="ui-row-flex ui-whitespace wst_index_head" style="display:none;">
+			<div class="ui-col wst_index_headl"><span>商家分类</span></div>
+		    <div class="ui-col ui-col-2">
+		    	<span class="wst_index_headr1"><a href="javascript:void(0);" onclick="javascript:goToShops();">快速查找</a></span>
+		    </div>
+		</div>
+        <div class="ui-row-flex wst_index_classify" style="display:none;">
+        <volist name=":WSTCatsAndGoods($areaId2)" key="k" id="ar" offset="0" length='4'>
+		    <div class="ui-col ui-col">
+		        <a href="javascript:void(0);" onclick="javascript:goToShopsList({$ar['catId']});">
+			    <span class="ui-flex ui-flex-align-end <?php if($k==1){ echo 'wst_option1';}if($k==2){ echo 'wst_option2';}if($k==3){ echo 'wst_option3';}if($k==4){ echo 'wst_option4';}?>"><span class="ui-nowrap-flex wst_index_classifys">{$ar['catName']}</span></span>
+			    </a>
+		    </div>
+		</volist>
+		</div>
+		<?php if($indexAdsa){ ?>
+		<div class="ui-row-flex wst_index_advert">
+		    <div class="ui-col ui-col wst_index_advertl">
+		    <volist name="indexAdsa" id="a" offset="0" length='1'>
+		    	<a href="{$a['adURL']}"><img src="__ROOT__/{$a['adFile']}"></a>
+		    </volist>
+		    </div>
+		    <div class="ui-col ui-col wst_index_advertr">
+		    <volist name="indexAdsb" id="b" offset="0" length='1'>
+		    	<a href="{$b['adURL']}"><img src="__ROOT__/{$b['adFile']}"></a>
+		    </volist>
+		    <volist name="indexAdsc" id="c" offset="0" length='1'>
+		    	<a href="{$c['adURL']}"><img src="__ROOT__/{$c['adFile']}"></a>
+		    </volist>
+		    </div>
+		</div>
+		<?php } ?>
+    	<?php if($indexAdsd){ ?>
+		<div class="wst_index_advertb">
+			<volist name="indexAdsd" id="d">
+		    	<a href="{$d['adURL']}"><img src="__ROOT__/{$d['adFile']}"></a>
+		    </volist>
+		</div>
+		<?php }?>
+		<div class="ui-row-flex ui-whitespace wst_index_shophead">
+			<div class="ui-col wst_index_headl"><span>热点店铺</span></div>
+			<div class="ui-col ui-col-2">
+		    	<span class="wst_index_headr1"><a href="javascript:void(0);" onclick="javascript:goToShops();">更多</a></span>
+		    </div>
+		</div>
+		<ul class="ui-tab-content">
+	        <li id="shops-list"></li>
+	    </ul>
+</section>
+<script src="__ROOT__/Apps/WeChat/View/default/js/home.js"></script>
+

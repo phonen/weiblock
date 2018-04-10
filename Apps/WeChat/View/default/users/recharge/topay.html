@@ -1,0 +1,55 @@
+      正在连接在线支付....
+         <section class="ui-container" style="display:none">
+        	<form action="{:U('WeChat/recharge/editRecharge')}" method="get" id="submit_form">
+        	    <div class="ui-form-itemin">
+		        	<label>充值单号：</label><div style="float:right;">{$recharge_sn}</div>
+		        </div>
+		        <div class="ui-form-itemin">
+		        	<label>充值金额：</label><div style="float:right;">{$account}</div>
+		        </div>
+		    </form>
+		    
+		    	<div class="wst-acc-reflect">
+			    	<button id="modifyAcc" class="ui-btn-lg button" style="background: #17D036;" onclick="javascript:callpay();">微信支付</button>
+				</div>
+		  
+        </section>
+
+          
+   <script type="text/javascript">
+   callpay(); 
+	//调用微信JS api 支付
+    function jsApiCall(){
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest',
+            <?php echo $jsApiParameters; ?>,
+            function(res){
+                if(res.err_msg=="get_brand_wcpay_request:ok"){
+                	location.href = "{$returnUrl}";
+                }
+                if(res.err_msg=="get_brand_wcpay_request:cancel"){
+                	alert('您取消了支付');
+                	location.href = "{:U('Recharge/index')}";
+                }
+                if(res.err_msg=="get_brand_wcpay_request:fail"){
+                	alert(res.err_code+res.err_desc+res.err_msg);
+                	alert('支付失败');
+                	location.href = "{:U('Recharge/index')}";
+                }
+            }
+        );
+     
+    };
+    function callpay(){
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+	</script>

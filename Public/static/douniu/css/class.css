@@ -1,0 +1,251 @@
+@charset "utf-8";
+body {
+	font-size:12px;
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:100%;
+	background-image:url(../images/jin0_n.jpg);
+	background-size:100%;
+	position:fixed;
+}
+.clear{
+	clear:both;
+	}
+header{
+	width:100%;
+	height:20%;
+	}
+.fanhui{
+	width:15%;
+	height:30%;
+	float:left;
+	margin:0px;
+	}
+.fanhui img{
+	width:100%;
+	height:100%;
+	}
+/*.logos{*/
+	/*width:200px;*/
+	/*height:100px;*/
+	/*background-color: yellow;*/
+	/*float:left;*/
+	/*margin-left:12%;*/
+	/*background-image:url(../po3.png);*/
+	/*background-size:100% 100%;*/
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*left: auto;*/
+	/*}*/
+.logos p{
+	font-size:2em;
+	color:#FFF;
+	text-align:center;
+	line-height:50%;	
+	}
+	
+.ke_yong_yue{
+	float:left;
+	width:40%;
+	height:30%;
+	margin-left:2%;
+	background-image:url(../images/laohu15_ns.png);
+	background-size:100% 100%;
+	margin-top:5%;
+    display:table;
+	}
+.ke_yong_yue p{
+	width:100%;
+	height:100%;
+	color: #C63;
+	font-size:0.8em;
+	display: table-cell;
+	line-height:250%;
+	text-align:center;}
+.yxguize{
+	float:right;
+	width:40%;
+	height:30%;
+	margin-right:2%;
+	background-image:url(../images/laohu15_ns.png);
+	background-size:100% 100%;
+	margin-top:5%;
+    display:table;
+}
+.yxguize p{
+	width:100%;
+	height:100%;
+	color: #C63;
+	font-size:0.8em;
+	display: table-cell;
+	line-height:250%;
+	text-align:center;
+}
+			
+/*......................header.......................	*/
+	
+		
+section{
+	width:100%;
+	height:68%;
+	}
+.section_div{
+	margin-left:3%;
+	padding: 0px;
+	margin-top:0px;
+	margin-right:0px;
+	margin-bottom:-10px;
+	width:94%;
+	height:100%;
+}
+.yu_e{
+	height:10%;
+	width:100%;
+	margin:0 auto;
+	font-size:12px;
+	color: #C90;
+	text-align: center;
+	border-bottom: dotted 1px #cc9900;
+	}	
+
+.jieguoul{
+	padding: 0px;
+	margin: 0px auto;
+	display: block;
+}
+.jieguoul li{
+	width: 100%;
+	height: auto;
+	padding: 0px;
+	margin: 0 auto;
+	list-style:none;
+}
+.jieguoul li img{
+	width: 100%;
+	height: auto;
+	padding: 0px;
+	margin: 0 auto;
+}
+.danhao{
+	padding: 0;
+	margin: 0 auto;
+	height: 10%;
+	display: block;
+}
+.danhao li{
+	width: 15%;
+	height: auto;
+	padding: 0px;
+	margin: 0 ;
+	list-style:none;
+	font-size:1.2em;
+	line-height:1.4em;
+	color:#fff;
+	text-align:center;
+	display: inline-block;
+	background-image:url(../images/shuzibg.png);
+	background-size:100% 100%;
+}
+.niu{
+	width: 100%;
+	padding: 0;
+	margin: 0 auto;
+	height: 100%;	
+}
+.niu li{
+	padding: 0px;
+	margin: 0 ;
+	list-style:none;
+	font-size:1.2em;
+	text-align:center;
+}
+.button{
+	width: 100%;
+	line-height: 100%;
+	margin-top:10%;
+	border-radius:10px;
+	opacity:0.8;
+	color: #FFFFFF;
+}
+button:hover{
+	background-color:#333333;
+}
+footer{
+	width:100%;
+	height:10%;
+	background-color:rgba(0,0,0,0.3);
+	padding:1% 0 1% 0;
+	position:fixed;
+	bottom:0px;
+	}
+.footer_s{
+	width:90%;
+	height:100%;
+	margin:0 0 0 5%;
+	padding:0;
+	margin-top:5%;
+	}
+.footer_s li{
+	list-style:none;
+	}
+.shou{
+	font-size:1.2em;
+	color:#FFF;
+	float:left;
+	line-height:200%;
+	width:14%;
+	height:100%;
+	margin-top:1%;
+	}
+.jian{
+	float:left;
+	margin-left:2%;
+	background-image:url(../images/laohu14_n.png);
+	background-size:100% 100%;
+	width:15%;
+	height:50%;
+	}
+.jian:active{
+	background-image:url(../images/laohu14_s.png);
+	background-size:100% 100%;
+	}
+.shu{
+	float:left;
+	font-size:1.5em;
+	color: #F93;
+	width:20%;
+	height:55%;
+	background-image:url(../images/laohu15_n.png);
+	background-size:100% 100%;
+	/*background-color:rgba(51,51,51,0.5);*/
+	text-align:center;
+	margin-left:2%;
+	border-radius:5px;
+	line-height:1.7em;
+	}
+.jia{
+	float:left;
+	margin-left:2%;
+	background-image:url(../images/laohu13_n.png);
+	background-size:100% 100%;
+	width:15%;
+	height:50%;
+	}
+.jia:active{
+	background-size:100% 100%;
+	background-image:url(../images/laohu13_s.png)
+	}
+.kais{
+	float: right;
+	background-image:url(../images/laohu11_n.png);
+	width:25%;
+	height:75%;
+	background-size:100% 100%;
+	margin-left:5%;
+	margin-top:-2%;
+	}
+.kais:active {
+	background-size:100% 100%;
+	background-image:url(../images/laohu11_s.png)
+	}

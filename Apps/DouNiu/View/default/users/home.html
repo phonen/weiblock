@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="user-scalable=no, width =320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="lGjQ2NVxu_pzmUIG2RPzNYX-TNii5iCQbtppdbjN2yMRjt8xAKJxm-C1qhi9yDR4i2WaP8DssQaO7OSejEyfGQ==">
+    <title>{$CONF['mallName']}</title>
+    <link href="__PUBLIC__/static/douniu/css/index3.css" rel="stylesheet">
+    <link href="__PUBLIC__/static/douniu/css/index.css?v=2" rel="stylesheet"></head>
+<body align="center" id="body">
+ <div class="container" style="padding:0;">     
+<script src="__PUBLIC__/static/douniu/js/jquery.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/douniu/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/douniu/js/login.js" type="text/javascript"></script>
+<script src="__PUBLIC__/static/douniu/js/common.js?v=3" type="text/javascript"></script>
+    <div id="sect">
+        <!--头部start-->
+        <header>
+            <p>{$CONF['notice']}</p>
+        </header>
+        <!--头部end-->
+
+        <!--中间start-->
+        <div class="sect1">
+            <div id="Recharge">
+                <div class="id" style="margin-top: -10px;">
+                    <ul>
+                        <li class="id_bq" style="list-style: url(__PUBLIC__/static/douniu/images/database.png);">用户ID:</li>
+                        <li class="id_nr"><big>{$info['userId']}</big></li>
+                    </ul>
+                </div>
+                <div class="header_border"></div>
+                <div class="chongztx" style="margin-top: -10px;">
+                    <a href="{:U('Recharge/index')}" class="chongztx_c">
+                        <P>充值</P>
+                    </a>
+                    <a href="{:U('CashDraws/withdrawals')}" class="chongztx_t">
+                        <P>提现</P>
+                    </a>
+                </div>
+            </div>
+            <div id="balance">
+                <div class="header_left" style="width: 30%">
+                    <p class="header_p1">{$info['userMoney']}</p>
+                    <p class="header_p2">账户余额</p>
+                </div>
+                <div class="header_border" style="width: 5%"><div style="height: 100%;width: 1px;background-color: gray;opacity: 0.8"></div></div>
+                <div class="header_left" style="width: 30%">
+                    <p class="header_p1">{$info['distributMoney']}</p>
+                    <p class="header_p2">佣金余额</p>
+                </div>
+                <div class="header_border" style="width: 5%"><div style="height: 100%;width: 1px;background-color: gray;opacity: 0.8"></div></div>
+                <div class="header_left" style="width: 30%">
+                    <p class="header_p1">{$info['redPacketMoney']}</p>
+                    <p class="header_p2">红包金额</p>
+                </div>
+            </div>
+            <div id="dailis">
+                <a href="{:U('Users/agent')}" class="daili_zq" id="daili">
+                    <li class="hongdian">1</li>
+                    <img src="__PUBLIC__/static/douniu/images/6-1.png">
+                    <p>代理赚钱</p>
+                </a>
+                <a href="{:U('Games/index')}" class="daili_zq" id="rules">
+                    <img src="__PUBLIC__/static/douniu/images/123.png">
+                    <p>游戏规则</p>
+                </a>
+                <a href="#" class="daili_zq" id="hongbaos">
+                    <img src="__PUBLIC__/static/douniu/images/1-3.png">
+                    <p>新手红包</p>
+                </a>
+            </div>
+                <div id="kaishisl">
+                    <a href="{:U('Games/index')}" class="kaishisl_an" >
+                        <p style="background-image:url(__PUBLIC__/static/douniu/images/anniu6.png);">开始游戏</p>
+                    </a>
+                </div>
+            <div id="jinp">
+                <ul>
+                    <li><img width="12px" height="12px" src="__PUBLIC__/static/douniu/images/wx01.png"/> 微信认证--H5游戏应用</li>
+                    <a href="" style="display: block;width: 50px;margin: 0 auto;color:blue;">投诉举报</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--中间end-->
+    <footer>
+        <a href="{:U('Users/index')}" class="d_footer" >
+            <ul class="ul_footer" onclick="location.href='/'">
+                <img src="__PUBLIC__/static/douniu/images/home.png" class="img_footer">
+                <p>首页</p>
+            </ul>
+        </a>
+<!--        <a href="--><!--" class="d_footer" >-->
+<!--            <ul class="ul_footer">-->
+<!--                <img src="--><!--" class="img_footer">-->
+<!--                <p>斗牛大厅</p>-->
+<!--            </ul>-->
+<!--        </a>-->
+        <a href="{:U('Games/index')}" class="d_footer" >
+            <ul class="ul_footer">
+                <img src="__PUBLIC__/static/douniu/images/barchart.png" class="img_footer">
+                <p>猜牛大厅</p>
+            </ul>
+        </a>
+        <a href="{:U('WeChat/Users/index')}" class="d_footer" >
+            <ul class="ul_footer">
+                <img src="__PUBLIC__/static/douniu/images/more.png" class="img_footer">
+                <p>更多游戏</p>
+            </ul>
+        </a>
+        <a href="{:U('Users/toUserInfo')}" class="d_footer" >
+            <ul class="ul_footer" id="personal">
+                <img src="__PUBLIC__/static/douniu/images/user1.png" class="img_footer">
+                <p>个人中心</p>
+            </ul>
+        </a>
+    </footer>
+<div id="wxrukou" style="display:block;">
+    <span class="guanbi">×</span>
+    <img src="{:WSTDomain()}/{$CONF['qrcode']}">
+    <p>
+        长按识别联系客服</p>
+</div>
+
+
+
+<div id="saolei_rukou" style="display: none">
+    <a href="/site/duobao-s" class="kaishisl_an" style="margin-top:15%; ">
+        <p style="background-image:url(__PUBLIC__/static/douniu/images/anniu_douniu.png);background-size:192px 84px;">
+            <img style="margin-top:10px;padding:0px;width: 50px;height:50px;border: 1px solid rgba(254,246,78,0.7); border-radius: 15px;" src="__PUBLIC__/static/douniu/images/logo_dn.png"/>
+        </p>
+    </a>
+    <a href="/site/duobao" class="kaishisl_an"  style="margin-top:10%;">
+        <p style="background-image:url(__PUBLIC__/static/douniu/images/anniu_saolei.png);background-size:192px 84px;">
+            <img style="margin-top:10px;padding:0px;width: 50px;height:50px;border: 1px solid rgba(135,236,74,0.7); border-radius: 15px;" src="__PUBLIC__/static/douniu/images/logo_sl.png"/>
+        </p>
+    </a>
+    <a href="/site/daxiao" class="kaishisl_an"  style="margin-top:10%;">
+        <p style="background-image:url(__PUBLIC__/static/douniu/images/anniu_jingcai.png);background-size:192px 84px;">
+            <img style="margin-top:10px;padding:0px;width: 50px;height:50px;border: 1px solid rgba(253,253,253,0.7); border-radius: 15px;" src="__PUBLIC__/static/douniu/images/logo_dx.png"/>
+        </p>
+    </a>
+</div>
+<!--<div style="width: 60%;height: 30px;background-color: darkgreen;position: absolute;left: 20%;top: 3px"></div>-->
+<style>
+    #guanzhu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #f9fbfb;
+        border: 1px solid #ffa9a6;
+        border-radius: 3px;
+        padding: 2px 6px;
+    }
+    #saolei_rukou{
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin-left: 10%;
+        margin-top: 15%;
+        background: rgba(0, 0, 0, 0.8);
+        width: 80%;
+        height: 60%;
+    }
+  
+    #wxrukou {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin-left: 10%;
+        margin-top: 15%;
+        background: rgba(0, 0, 0, 0.8);
+        width: 80%;
+        height: 60%;
+    }
+
+    #wxrukou img {
+        width: 60%;
+        margin-top: 20%;
+    }
+
+    #wxrukou p {
+        color: #E98F36;
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .guanbi {
+        font-size: 35px;
+        color: #ccc;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        display: inline-block;
+        font-weight: normal;
+    }
+</style>
+<script type="text/javascript">
+stopDrop();
+  function stopDrop(){
+    var lastY;//最后一次y坐标点
+    $(document.body).on('touchstart', function(event) {
+      lastY = event.originalEvent.changedTouches[0].clientY;//点击屏幕时记录最后一次Y度坐标。
+    });
+    $(document.body).on('touchmove', function(event) {
+      var y = event.originalEvent.changedTouches[0].clientY;
+      var st = $(this).scrollTop(); //滚动条高度
+      if (y >= lastY && st <= 10) {//如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。
+        lastY = y;
+        event.preventDefault();
+      }
+      lastY = y;
+    });
+  }
+</script>
+<script>
+    $(function ($) {
+        /**
+         * Created by youngyang on 2017/5/22.
+         */
+        $('.guanbi').on('click', function () {
+            $('#wxrukou').fadeOut(300);
+        });
+        $('#guanzhu').on('click', function () {
+            $('#wxrukou').fadeIn(300);
+        });
+
+       /** $('#kaishisl').on('click', function () {
+            $('#saolei_rukou').css("display","block");
+        }); */
+
+
+        $("#daili").click(function () {
+            if (typeof ($.cookie('user_token')) == 'undefined' || $.cookie('user_token') == 'null') {
+                /*$("#modal").fadeIn();
+                $("#hidebg").show();*/
+                location.href = "/site/login";
+            }
+            else {
+                location.href = "/site/daili";
+            }
+        });
+
+
+//点击到各项明细
+        $("#mingxi").click(function () {
+//success('3个工作日后上');
+//return false;
+            if (typeof ($.cookie('user_token')) == 'undefined' || $.cookie('user_token') == 'null') {
+                /*$("#modal").fadeIn();
+                 $("#hidebg").show();*/
+                location.href = "/site/login";
+            }
+            else {
+                location.href = "/site/transaction-detail";
+            }
+        });
+
+
+
+//时间格式转换
+        function timeZero(p) {
+            if (p < 10) return '0' + p;
+            return p;
+        }
+
+//获取地址栏传参,提示框
+        function success(title) {
+            $("#modal3").fadeIn('fast');
+            if (title) {
+                $("#modal3").text(title);
+            }
+            $("#modal3").css('display', 'inline-block');
+            $("#modal3").fadeIn('fast');
+            window.setTimeout(function () {
+                $("#modal3").fadeOut(1000);
+            }, 2000);
+        }
+            $("#rules").click(function () {
+                location.href = "/site/jiaocheng";
+//            $("#modal3").show();
+//            $("#hidebg").show();
+            });
+//通过参数名获取url的参数值
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+//获取相关值
+//var type = getUrlParameter('type'); //获取类型是在线还是不在
+        var code = getUrlParameter('code'); //获取微信code
+
+//alert($.cookie('user_token'));
+//alert($.cookie('user_tel'));
+//用户界面数据查询 ,说明用户正处在登录状态
+        if (typeof ($.cookie('user_token')) != 'undefined' && $.cookie('user_token') != 'null') {
+            //alert('验证过期');
+            //验证服务端TOKEN是否过期
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: '/api/isreg',
+                data: {_csrf: 'lGjQ2NVxu_pzmUIG2RPzNYX-TNii5iCQbtppdbjN2yMRjt8xAKJxm-C1qhi9yDR4i2WaP8DssQaO7OSejEyfGQ==', mobile: $.cookie('user_tel')},
+                success: function (data) {
+                    //alert(data.code);
+                    if (data.errcode == 0) {
+                        //alert(data.data.moni_money);
+                        //获取账户余额
+                        $.cookie('user_money', data.data.money, {expires: 1,path:"/"});
+                        //$.cookie('user_reward_money', data.data.reward_money, { expires: 1 });      //获取红包余额
+                        //$.cookie('user_moni_money', data.data.moni_money, { expires: 1 });          //获取模拟盘金币
+                        //alert($.cookie('user_money'));
+                        //alert(code);
+
+                        //判断code是否为空
+                        if (typeof (code) != 'undefined') {
+                            $(".all").html('数据加载中...');
+                            //alert(code);//获取保存openid
+                            $.ajax({
+                                dataType: 'json',
+                                type: 'post',
+                                async: false,
+                                url: '/api/get_openid_by_code',
+                                headers: {
+                                    "Authorization": "token=" + $.cookie('user_token') + ",tel=" + $.cookie('user_tel')
+                                },
+                                data: {'code': code},
+                                success: function (data) {
+                                    //alert(data.code);
+                                    //测试用
+                                    //$.cookie('user_token', '83D36018BBCDB65EDC7631A4A2F5851E', { expires: 1 });
+                                    //$.cookie('user_tel', '15320399046', { expires: 1 });
+                                    //$.cookie('user_openid', 'o3iGHwjrmpw6_D69eLai4CepuyzA', { expires: 1 });
+                                    //$.cookie('user_code', code, { expires: 1 });
+                                    //测试用
+                                    if (data.code == 200 && data.return_code == 'SUCCESS') {
+                                        //在线，保存相关数据
+                                        //准备跳转
+                                        //var url = "http://hob.sunxn.com/loginMainGo/Index?pa=" + data.return_pa;
+                                        //alert(url);
+                                        //window.location.href = url;
+                                    }
+                                    else {
+                                        //location.href = "/";
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    //alert('dd');
+                                    if (XMLHttpRequest.status == 401) {
+                                        alert('系统错误，请关闭重新登录');
+                                    }
+                                }
+                            });
+                        }
+
+                        $("#offline").hide();
+                        $("#online").show();
+                        $("#l1").css('color', '#007AFF');
+                        $("#l2").css('color', '#007AFF');
+                        $("#l3").css('color', '#007AFF');
+                        var t1 = $.cookie('user_tel').substr(0, 3);
+                        var t2 = '****';
+                        var t3 = $.cookie('user_tel').substr($.cookie('user_tel').length - 4);
+                        $("#username").text('用户ID:'+data.data.user_id);
+//$("#username").text($.cookie('user_tel'));
+                        var money = parseFloat($.cookie('user_money'));
+
+
+                        money = Math.round(money * 100) / 100;
+
+                        if (String(money).indexOf(".") > -1) {
+                            money = money + '0';
+
+                        }
+                        else {
+                            money = money + '.00';
+                        }
+                        //console.log(money.slice(0, money.length - 3));
+                        //console.log(money.slice(-3));
+                        $("#money_first").text(money.slice(0, money.length - 3));
+                        $("#money_last").text(money.slice(-3));
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (XMLHttpRequest.status == 401) {
+                        alert('系统错误，请关闭重新登录');
+                    }
+                }
+            });
+            var typeflag = 0;
+//获取红包
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: '/api/reward-info-all',
+                data: {
+                    _csrf: 'lGjQ2NVxu_pzmUIG2RPzNYX-TNii5iCQbtppdbjN2yMRjt8xAKJxm-C1qhi9yDR4i2WaP8DssQaO7OSejEyfGQ==', tel: $.cookie('user_tel')
+                },
+                success: function (data) {
+                    if (data.errcode == 0) {
+//循环开始
+                        for (var i in data.data) {
+                            if (data.data[i].is_online == 1 && data.data[i].status == 'reach') {
+                                typeflag = 1;
+                                $("#hongbaos").children().last().val(data.data[i].alias);
+                                if (data.data[i].alias == 'xshb') {
+                                    $("#hongbao_name").text('新手红包');
+                                    $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                    return false;
+                                }
+                                else if (data.data[i].alias == 'sccz') {
+                                    $("#hongbao_name").text('首次充值');
+                                    $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                    return false;
+                                }
+                                else if (data.data[i].alias == '10time') {
+                                    $("#hongbao_name").text('每10次竞猜送2元');
+                                    $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                    return false;
+                                }
+                                else if (data.data[i].alias == 'ly5b') {
+                                    $("#hongbao_name").text('连赢5把送10元');
+                                    $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                    return false;
+                                }else if (data.data[i].alias == 'cz10c') {
+                                    $("#hongbao_name").text('充值10次送4元');
+                                    $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                    return false;
+                                }
+
+                            }
+                        }
+//循环结束
+//如果不存在红包了
+                        if (typeflag == 0) {
+//循环开始
+                            for (var i in data.data) {
+                                if (data.data[i].is_online == 1 && data.data[i].status == 'unreach') {
+                                    typeflag = 1;
+                                    $("#hongbaos").children().last().val(data.data[i].alias);
+                                    if (data.data[i].alias == 'xshb') {
+                                        $("#hongbao_name").text('新手红包');
+                                        $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                        return false;
+                                    }
+                                    else if (data.data[i].alias == 'sccz') {
+                                        $("#hongbao_name").text('首次充值');
+                                        $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                        return false;
+                                    }
+                                    else if (data.data[i].alias == '10time') {
+                                        $("#hongbao_name").text('每10次竞猜送2元');
+                                        $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                        return false;
+
+                                    }
+                                    else if (data.data[i].alias == 'ly5b') {
+                                        $("#hongbao_name").text('连赢5把送10元');
+                                        $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                        return false;
+                                    }else if (data.data[i].alias == 'cz10c') {
+                                        $("#hongbao_name").text('充值10次送4元');
+                                        $("#hongbao_price").text('+ ' + data.data[i].gross);
+                                        return false;
+                                    }
+                                }
+                            }
+//循环结束
+                        }
+//提示已领完
+//alert(typeflag);
+                        if (typeflag == 0) {
+
+                            $("#hongbao_name").text('已领完');
+                            $("#hongbao_price").text('');
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    if (XMLHttpRequest.status == 401) {
+                        alert('系统错误，请关闭重新登录');
+                    }
+                }
+            });
+
+
+
+
+            //默认显示弹窗
+            if (typeof ($.cookie('user_rukouimg')) == 'undefined' || $.cookie('user_rukouimg') == 'null' || $.cookie('user_rukouimg') != new Date().getDate()) {
+                $.cookie('user_rukouimg', new Date().getDate(), {path: "/", expires: 300});
+                $("#wxrukou").show();
+            }
+
+
+        }else {//否则没登陆
+            //window.location.href = "/site/login";
+        }
+//点击红包
+        $("#hongbaos").click(function () {
+        	$.ajax({
+    	    	type:'post',
+    	    	url:"{:U('Users/first')}",
+    	    	success:function(result){
+    	    		alert(result.msg);
+    	         }
+    	    });
+        });
+    });
+</script>
+
+    </div>
+</body>
+</html>

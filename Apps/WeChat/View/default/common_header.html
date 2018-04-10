@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <script>
+		var WST = ThinkPHP = window.Think = {
+		        "ROOT"   : "__ROOT__",
+		        "APP"    : "__APP__",
+		        "PUBLIC" : "__PUBLIC__",
+		        "DEEP"   : "{:C('URL_PATHINFO_DEPR')}",
+		        "MODEL"  : ["{:C('URL_MODEL')}", "{:C('URL_CASE_INSENSITIVE')}", "{:C('URL_HTML_SUFFIX')}"],
+		        "VAR"    : ["{:C('VAR_MODULE')}", "{:C('VAR_CONTROLLER')}", "{:C('VAR_ACTION')}"],
+		        "DOMAIN" : "{:WSTDomain()}",
+		        "CITY_ID" : "{$currArea['areaId']}",
+		        "CITY_NAME" : "{$currArea['areaName']}",
+		        "DEFAULT_IMG": "{:WSTDomain()}/{$CONF['goodsImg']}",
+		        "MALL_NAME" : "{$CONF['mallName']}",
+		        "SMS_VERFY"  : "{$CONF['smsVerfy']}",
+		        "PHONE_VERFY"  : "{$CONF['phoneVerfy']}",
+		        "CASHSTART_MONEY" : "{$CONF['cashStartMoney']}",
+		        "IS_LOGIN" :"{$WST_IS_LOGIN}",
+		        "areaId3" : "<?php echo $areaId3;?>",
+		        "communityId" : "<?php echo $communityId;?>",
+		        "communityName" : "<?php echo $communityName;?>",
+		        "wstRealLatitude" : "<?php echo $wstRealLatitude;?>",//获取的
+		        "wstRealLongitude" : "<?php echo $wstRealLongitude;?>",
+		        "areaId2" : "<?php echo $areaId2;?>",//当前城市
+		        'areaName2': "<?php echo $areaName2;?>",	//当前城市的名称
+		        "WeiXinAppId"  : "{$CONF['WeiXinAppId']}",
+		        "WeiXinAppCode"  : "{$CONF['WeiXinAppCode']}",
+		}
+		</script>
+		<!-- 引入样式 -->
+	    <link rel="stylesheet" href="__ROOT__/Apps/WeChat/View/default/css/ydui.css">
+	    <!-- 引入rem自适应类库 -->
+	    <script src="__ROOT__/Apps/WeChat/View/default/js/ydui-flexible.js"></script>
+	    <!-- 引入 Vue -->
+		<script src="__ROOT__/Apps/WeChat/View/default/js/vue.js"></script>
+		<!-- 引入组件库 -->
+		<script src="__ROOT__/Apps/WeChat/View/default/js/ydui.js"></script>
+		<script src="__PUBLIC__/plugins/layer_mobile/layer.js"></script>    
+		
+		<script src="__PUBLIC__/js/zthink.js"></script>  
+        <script src="__ROOT__/Apps/WeChat/View/default/frozenui/js/zepto.min.js"></script>
+    </head>
+    <body ontouchstart="">

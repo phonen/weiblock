@@ -1,0 +1,135 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>后台管理登录</title>
+	<link rel="stylesheet" href="/Apps/Admin/View/css/reset1.css" />
+	<link href="/Public/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/Apps/Admin/View/css/login1.css" />
+    <script type="text/javascript" src="/Apps/Admin/View/js/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="/Apps/Admin/View/js/login.js"></script> -->
+    
+    
+    <script src="/Public/js/jquery.min.js"></script>
+    <script src="/Public/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Public/js/common.js"></script>
+    <script src="/Public/plugins/plugins/plugins.js"></script>
+    <script>
+      var ThinkPHP = window.Think = {
+	        "ROOT"   : "",
+	        "APP"    : "/index.php",
+	        "PUBLIC" : "/Public",
+	        "DEEP"   : "<?php echo C('URL_PATHINFO_DEPR');?>",
+	        "MODEL"  : ["<?php echo C('URL_MODEL');?>", "<?php echo C('URL_CASE_INSENSITIVE');?>", "<?php echo C('URL_HTML_SUFFIX');?>"],
+	        "VAR"    : ["<?php echo C('VAR_MODULE');?>", "<?php echo C('VAR_CONTROLLER');?>", "<?php echo C('VAR_ACTION');?>"]
+	  }
+      
+      $(function(){
+	   	   getVerify();
+	   	   $('.form-actions').click(function(){login()});
+	   	   $(document).keypress(function(e) { 
+	   		   if(e.which == 13) {  
+	   			   login();  
+	   		   } 
+	   	   }); 
+      })
+      
+      function getVerify() {
+	     $('.verifyImg').attr('src',Think.U('Admin/Index/getVerify','rnd='+Math.random()));
+      }
+      
+      function login(){
+	   	   var params = {};
+	   	   params.loginName = $.trim($('#loginName').val());
+	   	   params.loginPwd = $.trim($('#loginPwd').val());
+	   	   params.verify = $.trim($('#verfyCode').val());
+	   	   params.id = $('#id').val();
+	   	   if(params.loginName==''){
+	   		   Plugins.Tips({title:'信息提示',icon:'error',content:'请输入账号!',timeout:1000});
+	   		   $('#loginName').focus();
+	   		   return;
+	   	   }
+	   	   if(params.loginPwd==''){
+	   		   Plugins.Tips({title:'信息提示',icon:'error',content:'请输入密码!',timeout:1000});
+	   		   $('#loginPwd').focus();
+	   		   return;
+	   	   }
+	   	   if(params.verify==''){
+	   		   Plugins.Tips({title:'信息提示',icon:'error',content:'请输入验证码!',timeout:1000});
+	   		   $('#verfyCode').focus();
+	   		   return;
+	   	   }
+	   	   Plugins.waitTips({title:'信息提示',content:'正在登录，请稍后...'});
+	   		$.post(Think.U("Admin/index/login"),params,function(data,textStatus){
+	   			var json = WST.toJson(data);
+	   			if(json.status=='1'){
+	   				Plugins.setWaitTipsMsg({ content:'登录成功',timeout:1000,callback:function(){
+	   					location.href=Think.U("Admin/Index/index");
+	   				}});
+	   			}else if(json.status=='-2'){
+	   				Plugins.closeWindow();
+	   				Plugins.Tips({title:'信息提示',icon:'error',content:'验证码错误!',timeout:1000});
+	   				getVerify();
+	   			}else{
+	   				Plugins.closeWindow();
+	   				Plugins.Tips({title:'信息提示',icon:'error',content:'账号或密码错误!',timeout:1000});
+	   				getVerify();
+	   			}
+	   		});
+      }
+      </script>
+     <script src="/Public/js/think.js"></script>
+</head>
+<body>
+<div class="page">
+	<div class="loginwarrp">
+		<div class="logo">管理员登录</div>
+        <div class="login_form">
+			<form id="Login" name="Login" method="post" onsubmit="" action="">
+				<li class="login-item">
+					<span>用户名：</span>
+					<input type="text" name='loginName' id='loginName' class="login_input" >
+                    <span id="count-msg" class="error"></span>
+				</li>
+				<li class="login-item">
+					<span>密　码：</span>
+					<input type="password" name='loginPwd' id='loginPwd' class="login_input" >
+                    <span id="password-msg" class="error"></span>
+				</li>
+				<li class="login-item verify">
+					<span>验证码：</span>
+					<input type="text" class="login_input verify_input" name='verfyCode' id='verfyCode'>
+				</li>
+				
+				<img src="/Apps/Home/View/default/images/clickForVerify.png" border="0" class="verifyImg" style="width:120px;margin-top:10px;margin-left:2px;" onclick='javascript:getVerify()'/>
+				
+				<div class="clearfix"></div>
+				<li class="login-sub">
+					<input type="button" value="登录" class="form-actions"/>
+                    <input type="reset" name="Reset" value="重置" />
+				</li>                      
+           </form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+		window.onload = function() {
+			var config = {
+				vx : 4,
+				vy : 4,
+				height : 2,
+				width : 2,
+				count : 100,
+				color : "121, 162, 185",
+				stroke : "100, 200, 180",
+				dist : 6000,
+				e_dist : 20000,
+				max_conn : 10
+			}
+			CanvasParticle(config);
+		}
+	</script>
+	<script type="text/javascript" src="/Apps/Admin/View/js/canvas-particle.js"></script>
+</body>
+</html>

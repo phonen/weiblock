@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>常见问题-{$CONF['mallName']}</title>
+    <style>
+        .router-link-active {
+            color: #ff5d5b
+        }
+
+        .problembox {
+            margin-bottom: 1.2rem
+        }
+
+        .problembox .p {
+            padding: .1rem 0
+        }
+
+        .problembox .service {
+            padding: .2rem .3rem
+        }
+
+	.foot{
+			width: 100%;
+			height: 30px;
+			position: fixed;
+			bottom: 0;
+			text-align: center;
+			background: #f16262;
+			color: #fff;
+		}
+		
+		.foot a{
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 3px;
+		}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class='problembox'>
+        <div>
+            <template>
+                <yd-accordion accordion>
+                    <yd-accordion-item title="埋雷规则" open>
+                        <div style="padding: .24rem;">
+                            <p class='p'>1.总共分为两种玩法：单雷玩法和多雷玩法。</p>
+                            <p class='p'>2.单雷玩法一次只能选择1个数字，多雷玩法可以选择多个数字（最多选择5个）。</p>
+                            <p class='p'>3.每次下注金额从账户余额中扣除。</p>
+                            <p class='p'>4.每次下注，由平台向您微信支付1元获取微信单号。获取的单号，用最后5位与选择的数  字做比较，确保公平公正。</p>
+                            <p class='p'>5.单雷玩法：微信支付单号后5位包含1个选择的数字，及为中1个；包含2个，即为中2个；依次类推，最多中5个，中得越多，奖金越高。</p>
+                            <p class='p'>6.多雷玩法：微信支付单号后5位包含所有选择的所有数字，即为中奖。选择的数字越多，中奖奖金越高。</p>
+                        </div>
+                    </yd-accordion-item>
+                    <yd-accordion-item title="充值相关">
+                        <div style="padding: .24rem;">
+                            <p class='p'>1.为确保充值金额能稳定到账，请在微信转账页面添加留言，并输入您的ID号，不要输入ID号以外信息。</p>
+                        </div>
+                    </yd-accordion-item>
+                    <yd-accordion-item title="提现相关">
+                        <div style="padding: .24rem;">
+                            <p class='p'>1.点击提现按钮，即可立即提现到微信零钱。</p>
+                            <p class='p'>2.为方便您的资金流转，我们采用即提即到的方式为您提供提现服务。客服上班时间为上午9：00-24：00，非上班时间提现将会延迟，给您造成不便，请谅解。</p>
+                        </div>
+                    </yd-accordion-item>
+                </yd-accordion>
+            </template>
+        </div> 
+        <div class='service'>
+            <h2>如果您有任何疑问，请长按下方二维码，加客服微信，我们将竭诚为您服务！</h2>
+            <img src="{:WSTDomain()}/{$CONF['bjkf']}" alt="" width=50%>
+        </div>
+    </div>
+	<div class='foot'><a href="{:U('Users/Index')}" >返回首页</a>
+	</div>
+   <!-- <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed"
+            style="color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); font-size: 0.24rem;">
+        <a href="{:U('Users/Index')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-home" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">首页</span>
+        </a>
+        <a href="{:U('Users/toUserInfo')}" class="tabbar-item router-link-exact-active router-link-active tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-ucenter" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">我的</span>
+        </a>
+    </footer>
+	-->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>

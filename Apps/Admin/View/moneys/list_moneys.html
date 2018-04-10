@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{$CONF['shopTitle']['fieldValue']}后台管理中心</title>
+      <link href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="__ROOT__/Apps/Admin/View/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+      <!--[if lt IE 9]>
+      <script src="__PUBLIC__/js/html5shiv.min.js"></script>
+      <script src="__PUBLIC__/js/respond.min.js"></script>
+      <![endif]-->
+      <script src="__PUBLIC__/js/jquery.min.js"></script>
+      <script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script src="__PUBLIC__/js/common.js"></script>
+      <script src="__PUBLIC__/plugins/layer/layer.min.js"></script>
+      <script src="__PUBLIC__/plugins/plugins/plugins.js"></script>
+   </head>
+   <style>
+   *{box-sizing:content-box;}
+   </style>
+   <body class='wst-page'>
+     <form action='{:U('Admin/LogMoneys/index')}' method='post' autocomplete="off">
+       <div class='wst-tbar' style='height:25px;'>
+       <div style='float:left;'>                   
+                          流水类型：<select name='moneyType'>
+				  <option value='-1'>全部</option>
+				  <option value='1' <if condition="$moneyType eq 1 ">selected</if>>收入</option>
+				  <option value='0' <if condition="$moneyType eq 0 ">selected</if>>支出</option>
+				</select>
+		    流水来源：<select name='dataSrc'>
+				  <option value='-1'>全部</option>
+				  <option value='1' <if condition="$dataSrc eq 1 ">selected</if>>佣金</option>
+				  <option value='2' <if condition="$dataSrc eq 2 ">selected</if>>充值</option>
+				  <option value='3' <if condition="$dataSrc eq 3 ">selected</if>>提现</option>
+				  <option value='4' <if condition="$dataSrc eq 4 ">selected</if>>手续费</option>
+				  <option value='5' <if condition="$dataSrc eq 5 ">selected</if>>下单</option>
+				  <option value='6' <if condition="$dataSrc eq 6 ">selected</if>>手机登录红包</option>
+				  <option value='7' <if condition="$dataSrc eq 7 ">selected</if>>签到</option>
+				  <option value='8' <if condition="$dataSrc eq 8 ">selected</if>>盈利</option>
+			    </select>
+		   时间：<input type='text' id='startDate' class='laydate-icon' name='startDate' value='{$startDate}' style='width:100px' placeholder='开始日期' onclick='laydate({format: "YYYY-MM-DD"})'/>
+             <input type='text' id='endDate' class='laydate-icon' name='endDate' value='{$endDate}' style='width:100px' placeholder='结束日期' onclick='laydate({format: "YYYY-MM-DD"})'/>
+		关键字：<input type="text" name="key" style='width:120px;' value='{$key}'/>
+		<button type="submit" class="btn btn-primary glyphicon glyphicon-search">查询</button> 
+       </div>
+       </form>
+       <div class="wst-body"> 
+        <table class="table table-hover table-striped table-bordered wst-list">
+           <thead>
+             <tr>
+               <th width='10'>&nbsp;</th>               
+               <th width='130'>会员</th>
+			   <th width='100'>资金类型</th>
+			   <th width='100'>资金来源</th>
+			   <th width='80'>变动金额</th>
+			   <th width='80'>可用金额</th>
+			   <th width='80'>红包账户</th>
+			   <th width='80'>佣金账户</th>
+			   <th width='*'>备注</th>  
+			   <th width='150'>时间</th>
+             </tr>
+           </thead>  
+           <tbody>
+            <volist name="Page['root']" id="vo" key='i'>
+             <tr>
+               <td>{$i}</td>
+               <td>{$vo['loginName']}</td>
+               <td><if condition="$vo['moneyType'] eq 1">收入<else/>支出</if></td>
+               <td>{$vo['dataSrc']|getMoneySrc}</td>
+               <td>{$vo['money']}</td>
+               <td>{$vo['userMoney']}</td>
+               <td>{$vo['redPacketMoney']}</td>
+               <td>{$vo['distributMoney']}</td>
+               <td>{$vo['moneyRemark']}</td>
+               <td><?php echo $vo['createTime']?date('Y-m-d H:i:s',$vo['createTime']):"";?></td>
+             </tr>
+             </volist>
+             <tr>
+                <td colspan='10' align='center'>{$Page['pager']}</td>
+             </tr>
+           </tbody>
+        </table>
+       </div>
+   </body>
+</html>

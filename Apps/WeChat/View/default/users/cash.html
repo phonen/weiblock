@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>资金提现-{$CONF['mallName']}</title>
+    <style>
+        .router-link-active {
+            color: #ff5d5b
+        }
+
+        .cashps {
+            margin-top: 0.2rem;
+            color: #999;
+        }
+        .cashps .blue {
+            color: #0062cc;
+        }
+        .cashbox {
+            padding: 0.2rem;
+        }
+        .cashbox .textbox {
+            padding: 0.2rem;
+            background: #fff;
+            border-radius: 5px;
+        }
+        .cashbox .textbox .text {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        .cashbox .textbox .text .fl {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 2rem;
+            flex: 0 0 2rem;
+        }
+        .cashbox .textbox .text .fr {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+        }
+        .cashbox .textbox .text .blue {
+            color: #0062cc;
+        }
+        .cashbox .textbox .text .dv {
+            margin-top: 0.4rem;
+            font-size: 0.2rem;
+            color: #999;
+        }
+        .cashbox .textbox .input {
+            height: 60px !important;
+        }
+        .cashbox .textbox .inputps {
+            font-size: 0.2rem;
+            text-indent: 2em;
+        }
+        .cashbox .textbox div {
+            height: 0.75rem;
+            line-height: 0.75rem;
+            font-size: 0.4rem;
+        }
+        .cashbox .btn-block {
+            height: 0.8rem;
+        }
+			.foot{
+			width: 100%;
+			height: 30px;
+			position: fixed;
+			bottom: 0;
+			text-align: center;
+			background: #f16262;
+			color: #fff;
+		}
+		
+		.foot a{
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 3px;
+		}
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class='cashbox'>
+        <div class='textbox'>
+            <ul>
+                <li class='text'>
+                    <div class='fl'>
+                        <span>到账账户</span>
+                    </div>
+                    <div class='fr'>
+                        <span class='blue'>本微信号零钱包</span>
+                    </div>
+                </li>
+                <li class='text input'>
+                    <div class='fl'>  
+                        <span>提现金额</span>
+                    </div>
+                    <div class='fr'>
+                        <yd-input slot="right" type='text' v-model='num' required :showRequiredIcon="false" placeholder="￥ 请输入金额" id="drawMoney"></yd-input>
+                        <p class='inputps'>首次免手续费</p>
+                    </div>
+
+                </li>
+                <li class='text'>
+                    <div class='fl dv'>
+                        <span>现金余额</span>
+                    </div>
+                    <div class='fr dv'>
+                        <span>￥ {$user['userMoney']}元</span> 
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <yd-button size="large" type="danger" onclick="dodraw();">确认提现</yd-button>
+        </div>
+        <div class='cashps'>
+            <p class='blue'>新用户首次提现必须实盘夺宝2次；</p>
+            <p class='blue'>红包不能提现只能用于抵扣下单；</p>
+            <p>每次提现必须是1元的整数倍；</p>
+            <p>提现收取{$CONF['draw_rate']}%手续费；</p> 
+        </div>
+    </div>
+	<div class='foot'><a href="{$back_url}" >返回首页</a>
+	</div>
+	<!--
+    <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed"
+            style="color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); font-size: 0.24rem;">
+        <a href="{:U('Users/Index')}"
+           class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-home" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">首页</span>
+        </a>
+        <a href="{:U('Users/toUserInfo')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-ucenter" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">我的</span>
+        </a>
+    </footer>-->
+</div>  
+<script>
+	function dodraw(){ 
+		$.ajax({
+	    	type:'post',
+	    	url:"{:U('CashDraws/pay')}", 
+	    	data:{drawMoney:vm.num,targetType:0},
+	    	success:function(result){
+	    		layer.open({
+	    		    content: result.msg
+	    		    ,skin: 'msg'
+	    		    ,time: 1 //3秒后自动关闭
+	    		  }); 
+	    		//location.reload();
+	         }
+	    });
+	}
+</script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data(){
+            return {
+                num: '',
+            }
+        },
+        methods: {
+            submit(){
+                if(this.num == '') return
+                alert('提交成功')
+            }
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="user-scalable=no, width =320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="dp41A7EFygalH3RpzxJmWORpkww86DH_RWMFRd9eunXzeDrqZNYAZzYznHeryaEV6vJF617ioGmlVYiu69_-Tw==">
+    <title>{$CONF['mallName']}</title>
+    </head>
+<body align="center" id="body">
+<div class="container" style="padding:0;">
+<meta name="viewport" content="user-scalable=no, width=320">
+<link rel="stylesheet" href="__PUBLIC__/static/douniu/css/class.css"/>
+<link rel="stylesheet" href="__PUBLIC__/static/douniu/css/laohu.css?v=3"/>
+<script src="__PUBLIC__/static/douniu/js/jquery.min.js" type="application/javascript"></script>
+<script src="__PUBLIC__/static/douniu/js/jquery.mobile-1.4.5.min.js" type="application/javascript"></script>
+<script src="__PUBLIC__/static/douniu/js/jquery.cookie.js" type="application/javascript"></script>
+<script src="__PUBLIC__/static/douniu/js/jquery.shCircleLoader.js" type="text/javascript"></script>
+<!--<script src="--><!--" type="text/javascript"></script>-->
+<style>
+    .loader {  
+        position: fixed;  
+        left: 0px;  
+        top: 0px;  
+        width: 100%;  
+        height: 100%;  
+        z-index: 9999;  
+        text-align: center;
+        background: url('__PUBLIC__/static/douniu/images/001.gif') 50% 50% no-repeat rgb(249,249,249);  
+    } 
+    div.button:hover{
+        background-color:#481305;
+    }
+     .target{
+        border:2px solid #fff;
+        border-radius:0.5em;
+        width:25.9%;
+        height:13.7%;
+        position:absolute;
+        top:0;
+        left:0;
+    }
+   .target1{
+    	border:2px solid #fff;
+        border-radius:0.5em;
+        width:39.9%;
+        height:13.7%;
+        position:absolute;
+        top:0;
+        left:0;
+    }
+    .target2{
+        opacity:0.6;
+        background-color:yellow;
+        border:1.5px solid orange;
+        color:red;
+        font-weight:bold
+      }
+/*    .main_bg{background:url(*//*) top center no-repeat;height:1000px;position: fixed;top:0;left: 0;width: 100%;height: 100%;background-size: 100% 100%}*/
+</style>
+<body>
+	
+<div id="sect">
+    <div style="width: 100%; top: 150px; position: absolute; z-index: 999;">
+        <div style="background: #303031; border-radius: 20px; margin: 0 auto; padding: 11px 22px 11px 22px;
+            color: white; display: none;" id="modal3">
+            操作成功
+        </div>
+    </div>
+    <header>
+        <div class="fanhui" id="toindex"><img src="__PUBLIC__/static/douniu/images/sgj_fh_n.png"></div>
+        <div class="ke_yong_yue">
+            <p>可用余额：<b id="my_money">{$user['userMoney']}</b>元</p>
+        </div>
+        <div class="yxguize" id="rules">
+        	<p>游戏规则</p>
+        </div>
+    </header>
+   <div id="shclDefault"></div>
+   <div id="hidebg"></div>
+   <div id="modal4">
+        <div style="text-align: center; margin-top: 30px;">
+            <img src="__PUBLIC__/static/douniu/images/4-1.png" width="40" height="40"/>
+        </div>
+        <div style="text-align: center; margin-top: 10px; font-size: 16px;">
+            猜牛成功
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #A8A8A8; margin-top: 4px;">
+            交易单号
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #A8A8A8; margin-top: 20px;">
+            <font id="yingqian">3213213213123123123</font><font id="yinghou" style="font-size: 20px;">12319</font>
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #A8A8A8;">
+            <font id="trend_ying">猜</font> <font id="caidanum">1</font>手
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #FFAA00; margin-top: 20px;">
+            盈利  <font id="caidawin" style="font-size: 30px;">10.0</font> 元
+        </div>
+        <div class="qdbtn">
+                    <button id="caidaknow">
+                        确 定
+                    </button>
+        </div>
+    </div>
+    <!-- 斗牛失败的样式 -->
+    <div style="width: 260px; background-color:rgb(255, 255, 255); border-radius: 2px; left: 30px; top: 80px;
+                position: absolute; z-index: 999; height: 326px; line-height: 20px; border-radius: 4px;
+                display: none;" id="modal5">
+        <div style="text-align: center; margin-top: 30px;">
+            <img src="__PUBLIC__/static/douniu/images/5-1.png" width="40" height="40"/>
+        </div>
+        <div style="text-align: center; margin-top: 10px; font-size: 16px;">
+            猜牛失败
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #A8A8A8; margin-top: 4px;">
+            交易单号
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #A8A8A8; margin-top: 20px;">
+            <font id="shibaiqian">32132132131231231231231</font><font id="shibaihou"
+                                                                      style="font-size: 20px;">9</font>
+        </div>
+        <div style="text-align: center; font-size: 14px; color: #A8A8A8; margin-top: 20px;">
+            <font id="trend_shu">猜大</font> <font id="caixiaonum">1</font> 手
+        </div>
+        <div style="text-align: center; font-size: 14px; color:red; margin-top: 20px;">
+            亏损  <font id="caixiaowin" style="font-size: 30px;">10.0</font> 元
+        </div>
+         <div class="qdbtn">
+                    <button id="caixiaoknow">
+                        确 定
+                    </button>
+        </div>
+    </div>
+    <!-- 斗牛失败的样式 -->
+    <section style="padding-top: 20%">
+     <div class="section_div">
+            	 <p class="yu_e" style="margin-top: 10px;">剩余次数：<b id="count">{$user['play_count']}</b>次</p> 
+            	 <div style="width:35%;margin: 0 auto;height: 20%;">
+            		<ul class="jieguoul" >
+              		<li id="n1" style="display: none;"> <img  src="__PUBLIC__/static/douniu/images/room28_n.png"></li>
+              		<li id="n2" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room81_n.png"></li>
+              		<li id="n3" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room21_n.png"></li>
+              		<li id="n4" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room22_n.png"></li>
+              		<li id="n5" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room23_n.png"></li>
+              		<li id="n6" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room24_n.png"></li>
+              		<li id="n7" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room25_n.png"></li>
+              		<li id="n8" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room26_n.png"></li>
+              		<li id="n9" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room27_n.png"></li>
+              		<li id="n10" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room29_n.png"></li>
+              		<li id="n0" style="display: none;"><img  src="__PUBLIC__/static/douniu/images/room30_n.png"></li>
+              		<li id="n11" style="display: display;"><img  src="__PUBLIC__/static/douniu/images/room32_n.png"></li>
+              	</ul>
+                	<ul class="danhao" id="niu_nums" >
+              		<li >0</li>
+              		<li >0</li>
+              		<li >0</li>
+              		<li >0</li>
+              		<li >0</li>
+              	</ul></div>
+                <div style="width:100%;margin: 0 auto;height: 75%;">
+                	<ul class="niu" id="niu_xuan" >
+              		<li style="display: block;float:left; width: 32%;height: 30%;margin-top:10%;">
+                    <button id="1" class="button" style=" background-color:#CC3333;height: 45px;" >牛牛 <p style="font-size: 1.0em;color:black;margin-top:5px;" >×{$CONF['rate_niuniu']}倍</p>
+                    </button>
+                  </li>
+              		<li style="display: block;float:left;width: 32%;height: 30%;margin-top:10%;margin-left: 2%;">
+                    <button id="2" class="button" style="height: 45px;background-color:#99CC00;" >没牛 <p style="font-size: 1.0em;color:black;margin-top:5px;">×{$CONF['rate_meiniu']}倍</p>
+                    </button>
+                  </li>
+              		<li style="display: block;float:right;width: 32%;height: 30%;margin-top:10%;">
+                    <button id="3" class="button" style="height: 45px;background-color:#003366;" >五小牛 <p style="font-size: 1.0em;color:black;margin-top:5px;">×{$CONF['rate_wxn']}倍</p>
+                    </button>
+                  </li>
+              		<li style="display: block;float:left;width: 32%;height: 60%;margin-top:10%;">
+                    <button id="4" class="button" style="height: 80px;background-color:#990066;" >牛一 牛二 牛三 <p style="font-size: 1.0em;color:black;margin-top:5px;">×{$CONF['rate_123']}倍</p>
+                    </button>
+                  </li>
+              		<li style="display: block;float:left;width: 32%;height: 60%;margin-top:10%;margin-left: 2%;">
+                    <button id="5" class="button" style="height: 80px;background-color:#333333;" >牛四 牛五 牛六 <p style="font-size: 1.0em;color:black;margin-top:5px;">×{$CONF['rate_456']}倍</p>
+                    </button>
+                  </li>
+              	  <li style="display: block;float:right;width: 32%;height: 60%;margin-top:10%;">
+                    <button id="6" class="button" style="height: 80px;background-color:#009966;" >牛七 牛八 牛九 <p style="font-size: 1.0em;color:black;margin-top:5px;">×{$CONF['rate_789']}倍</p>
+                    </button>
+                  </li>
+              	</ul>
+                	</div>
+     <!-- <div class="target" ></div> -->
+    </div>
+    <div data="" style="display:none" id="data"></div>
+</section>
+    <footer>
+        <ul class="footer_s">
+            <li class="shou">下注:</li>
+            <li class="jian" id="order_jian"></li>
+            <li class="shu" style="font-size: 15px"><b id="myorder">1</b><b>0</b>元</li>
+            <li class="jia" id="order_jia"></li>
+            <li class="kais" id="ksdn"></li>
+        </ul>
+    </footer>
+    </body>
+    
+    <!-- 提示框 -->
+    <div id="modalxiadan_caishuzi">
+        <div class="divdb">
+            <div class="divtx">
+                <p>
+                    <img src="__PUBLIC__/static/douniu/images/qianbao.png" width="35px"></p>
+            </div>
+            <div class="divdb2">
+                <h4>
+                                                 根据微信<span>提现1元</span>生成唯一订单尾数作为依据。</h4>
+            </div>
+            <div class="divtbl">
+                <table>
+                    <tr>
+                        <td> 金额： </td>
+                        <td>
+                            <span id="caishuzi_txnum">1</span>0元
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 手续费：</td>
+                        <td>
+                            <span id="caishuzi_txsxf">1.00</span>元
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 预期收益： </td>
+                        <td>
+                            <span id="caishuzi_txshouyi" style="color: #E98F36;">10.00元</span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="qdbtn">
+                    <button id="caishuzi_queding">
+                        确 定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dbbg"></div>
+    <!-- 提示框 -->
+    <script>
+        function startRun(nius){
+            var Obj = "#n"+nius;
+            $(Obj).css("display","block");
+            $(Obj).siblings().css("display","none");
+            // randomNumber = nius;
+            // var m = n;
+            // for(var i=m;i<randomNumber+m;i++){
+            //     setTimeout(moveToNext(i+1),10000);
+            // }
+        }
+        // window.onload = startRun(0);
+
+        function replace_nums(nums){
+            var niu_nums_obj = ($("#niu_nums").children("li"));
+            var niu_nums = nums.split("");
+            for(var i=0;i<niu_nums_obj.length;i++){
+               niu_nums_obj[i].innerHTML= niu_nums[i];
+            }
+        }
+    </script>
+    <script>
+       $("#toindex").click(function(){
+            location.href = "{:U('Users/index')}";
+        });
+       $("#rules").click(function () {
+                location.href = "{:U('Games/rule')}";
+//            $("#modal3").show();
+//            $("#hidebg").show();
+            });
+    </script>
+    <script type="text/javascript">
+         $("#caidaknow").click(function () {
+            //猜大确认，不刷新准备
+            //更新余额
+            $("#modal4").hide();
+            $("#modal5").hide();
+            $("#hidebg").hide();
+            flag = 0;
+            location.href = "{:U('games/index')}";
+          });
+         $("#caixiaoknow").click(function () {
+            //猜小确认，不刷新准备
+            //更新余额
+            $("#modal4").hide();
+            $("#modal5").hide();
+            $("#hidebg").hide();
+            flag = 0;
+            location.href = "{:U('games/index')}";
+           });
+    </script>
+    <script type="text/javascript">
+    function is_ksdn(){
+      if($("#data").attr("data") == "" || $("#data").attr("data") == undefined || $("#data").attr("data") == null){
+        return 1;
+      }else{
+        return 0;
+      }
+    }
+    </script>
+
+    <script>
+        $('.dbbg').click(function () {
+            $('.dbbg').fadeOut(300);
+            $('#modalxiadan_caixiao').fadeOut(300);
+            $('#modalxiadan_caida').fadeOut(300);
+            $('#modalxiadan_caishuzi').fadeOut(300);
+            $('#modalxiadan_caihe').fadeOut(300);
+            $('#modalxiadan_caizuhe').fadeOut(300);
+        });
+    </script>
+    <script type="text/javascript">
+      $(".button").click(function(){
+        if($("#data").attr("data")){
+          var old_data_tag = $("#data").attr("data");
+          var obj = "#"+old_data_tag;
+          switch(obj)
+          {
+          case "#1":
+            $(obj).css({"background-color":"#CC3333","height": "45px","color":"#fff","font-weight":"normal","border":"buttonface","border-style":"outset"});
+            break;
+          case "#2":
+            $(obj).css({"height":" 45px","background-color":"#99CC00","color":"#fff","font-weight":"normal","border":"buttonface","border-style":"outset"});
+            break;
+          case "#3":
+            $(obj).css({"height":" 45px","background-color":"#003366","color":"#fff","font-weight":"normal","border":"buttonface","border-style":"outset"});
+            break;
+          case "#4":
+            $(obj).css({"height":" 80px","background-color":"#990066","color":"#fff","font-weight":"normal","border":"buttonface","border-style":"outset"});
+            break;
+          case "#5":
+            $(obj).css({"height":" 80px","background-color":"#333333","color":"#fff","font-weight":"normal","border":"buttonface","border-style":"outset"});
+            break;
+          case "#6":
+            $(obj).css({"height":" 80px","background-color":"#009966","color":"#fff","font-weight":"normal","border":"buttonface","border-style":"outset"});
+            break;
+          }       
+      }
+        $(this).css({"opacity":"0.6","background-color":"yellow","border":"1.5px solid orange","color":"red","font-weight":"bold"});
+        var data = $(this).attr("id");
+        $("#data").attr("data",data);
+      });
+    </script>
+
+<script type="text/javascript">
+            var flag = 0; //防止充值点击
+            $("#ksdn").click(function () {
+              var result = is_ksdn();
+              if(result == 1){
+            	  success("请选择牛！");
+                return false;
+              }
+             $("#shclDefault").show();
+             $('#shclDefault').shCircleLoader();
+             var lot = $("#myorder").text();//金额1,2,3,4...
+             var digit = $("#data").attr("data");//是否下注
+             var guess_last_digit = digit;//下单的数字
+             var order_id = 0;
+             if (flag >= 1) {
+                 $("#shclDefault").hide();
+                 return false;
+             }
+             
+             flag++;
+             //生成交易订单
+             $.ajax({
+            	 type: 'POST',
+                 dataType: 'json',
+                 url:"{:U('Games/play')}",
+                 data:{
+                	 'lot':lot,
+                	 'guess_last_digit': guess_last_digit,
+                 },
+                 success:function(data){
+                	 if(data.errcode == 0){
+                		// success(data.msg);
+                		 $("#shclDefault").hide();
+                		 trade_id = data.trade_id;
+                		 //企业付款拿到微信单号
+                		 $.ajax({
+                			 type: 'POST',
+                             dataType: 'json',
+                             url:"{:U('Games/doGame')}",
+                             data:{
+                            	 'trade_id':trade_id,
+                             },
+                             success:function(data){
+                            	 if(data.errcode == 0){
+                            		//成功
+                               	  if(data.data.profit_money>0){
+                          			  startRun(data.data.niu_num);//显示牛的图片
+                          			  replace_nums(data.data.weishu);
+                          			  $("#modal4").show();
+                                        $("#hidebg").show();
+                                        flag = 0;
+                                        $("#yingqian").text(data.data.shoushu);
+                                        $("#yinghou").text(data.data.weishu);
+                                        switch(data.data.guess_last_digit)
+                                        {
+                                          case "1":
+                                          var digits = "牛牛";
+                                          break;
+                                          case "2":
+                                          var digits = "没牛";
+                                          break;
+                                          case "3":
+                                          var digits = "五小牛";
+                                          break;
+                                          case "4":
+                                          var digits = "牛一,牛二,牛三";
+                                          break;
+                                          case "5":
+                                          var digits = "牛四,牛五,牛六";
+                                          break;
+                                          case "6":
+                                          var digits = "牛七,牛八,牛九";
+                                        }
+                                          $("#trend_ying").text('猜'+"【"+digits+"】");
+                                          $("#caidanum").text(lot);
+                                          $("#caidawin").text(Math.abs(data.data.profit_money));
+                          		  }else{
+                          			     startRun(data.data.niu_num);
+                                        replace_nums(data.data.weishu);
+                                        console.log(data.data.niu_num+","+data.data.weishu);
+                                        $("#modal5").show();
+                                        $("#hidebg").show();
+                                        flag = 0;
+                                        $("#caixiaonum").text(lot);
+   	                                  $("#shibaiqian").text(data.data.shoushu);
+   	                                  $("#shibaihou").text(data.data.weishu);
+   	                                  switch(data.data.guess_last_digit)
+   	                                  {
+   	                                        case "1":
+   	                                        var digits = "牛牛";
+   	                                        break;
+   	                                        case "2":
+   	                                        var digits = "没牛";
+   	                                        break;
+   	                                        case "3":
+   	                                        var digits = "五小牛";
+   	                                        break;
+   	                                        case "4":
+   	                                        var digits = "牛一,牛二,牛三";
+   	                                        break;
+   	                                        case "5":
+   	                                        var digits = "牛四,牛五,牛六";
+   	                                        break;
+   	                                        case "6":
+   	                                        var digits = "牛七,牛八,牛九";
+   	                                      }
+   	                                   $("#trend_shu").text('猜'+"【"+digits+"】");
+   	                                   $("#caixiaowin").text(Math.abs(data.data.profit_money));
+                          		  }
+                            	 }else{
+                            		 success(data.msg);
+                            	 }  
+                             }
+                		 });
+                	 }else{
+                		 flag = 0;
+                		 success(data.msg);
+                         $("#shclDefault").hide();
+                	 }
+                 }
+                 //error: function (XMLHttpRequest, textStatus, errorThrown) {
+                 //    if (XMLHttpRequest.status == 401) {
+                 //        $("#shclDefault").hide();
+                 //        success('没有权限');
+                 //        location.href = "{:U('Games/index')}";
+                 //    }
+                 //}
+             });
+        });
+
+    function success(title) {
+        $("#modal3").fadeIn('fast');
+        if (title) {
+            $("#modal3").text(title);
+        }
+        $("#modal3").css('display', 'inline-block');
+        $("#modal3").fadeIn('fast');
+        window.setTimeout(function () {
+            $("#modal3").fadeOut(1000);
+        }, 2000);
+    }
+    $("#guize").click(function () {
+        location.href = "";
+    });
+    $("#order_jia").tap(function () {
+    	var nowtime = $("#myorder").text();
+        if (nowtime == 1000) {
+            success('最大1000元');
+            return false;
+        }
+        $("#myorder").text(parseInt(nowtime) + 1);
+    });
+    $("#order_jian").tap(function () {
+        var nowtime = $("#myorder").text();
+        if (nowtime <= 1) {
+            success('最小10元');
+            return false;
+        }
+        $("#myorder").text(parseInt(nowtime) - 1);
+    });
+</script>
+    </div>
+</body>
+</html>

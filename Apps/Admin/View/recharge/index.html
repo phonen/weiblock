@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{$CONF['shopTitle']['fieldValue']}后台管理中心</title>
+      <link href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="__ROOT__/Apps/Admin/View/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+      <!--[if lt IE 9]>
+      <script src="__PUBLIC__/js/html5shiv.min.js"></script>
+      <script src="__PUBLIC__/js/respond.min.js"></script>
+      <![endif]-->
+      <script src="__PUBLIC__/js/jquery.min.js"></script>
+      <script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script src="__PUBLIC__/js/common.js"></script>
+      <script src="__PUBLIC__/plugins/layer/layer.min.js"></script>
+      <script src="__PUBLIC__/plugins/plugins/plugins.js"></script>
+   </head>
+   <style>
+   *{box-sizing:content-box;}
+   </style>
+   <body class='wst-page'>     
+    <div class='wst-tbar'>
+      <form method="post" action='{:U("Admin/Recharge/recharge_dc")}'>
+        <input type='hidden' name='time_type'  value='{$time_type}'/>  
+        <input type='hidden' name='recharge_from' value='{$recharge_from}'/>  
+        <input type='hidden' name='userName' value='{$userName}'/>
+        <input type='hidden' name='startDate' value='{$startDate}'/>
+        <input type='hidden' name='endDate' value='{$endDate}'/>
+        <input type='hidden' name='userType' value='{$userType}'/>
+        <input type='hidden' name='is_dc' value='1'/>
+        <!--<button type="submit" class="btn btn-primary glyphicon glyphicon-search">导出</button>
+      --></form>   
+   </div>
+     <form action='{:U('Admin/Recharge/index')}' method='post' autocomplete="off">
+       <div class='wst-tbar' style='height:25px;'>
+       <div style='float:left;'>
+		用户ID：<input type="text" name="userId" style='width:120px;' value='{$userId}'/>
+         时间类型：<select name='time_type'>
+         <option value='-1'>全部</option>
+         <option value='1' <if condition="$time_type eq 1 ">selected</if>>下单时间</option>
+         <option value='2' <if condition="$time_type eq 2 ">selected</if>>充值时间</option>
+        </select>
+              时间：<input type='text' id='startDate' class='laydate-icon' name='startDate' value='{$startDate}' style='width:100px' placeholder='开始日期' onclick='laydate({format: "YYYY-MM-DD"})'/>
+             <input type='text' id='endDate' class='laydate-icon' name='endDate' value='{$endDate}' style='width:100px' placeholder='结束日期' onclick='laydate({format: "YYYY-MM-DD"})'/>
+		<button type="submit" class="btn btn-primary glyphicon glyphicon-search">查询</button> 充值总额:{$total_recharge};&nbsp;&nbsp;&nbsp;用户总余额:{$total_money}
+       </div>
+       </form>
+       <div class="wst-body"> 
+        <table class="table table-hover table-striped table-bordered wst-list">
+           <thead>
+             <tr>
+               <th width='10'>&nbsp;</th>
+               <th width='30'>充值单号</th>
+               <th width='30'>微信交易单号</th>
+               <th width='30'>用户编号</th>
+               <th width='30'>帐号</th>
+               <th width='30'>用户名</th>
+			   <th width='50'>充值金额</th>
+			   <th width='50'>到账金额</th>
+			   <th width='70'>下单时间</th>
+			   <th width='70'>支付时间</th> 
+			   <th width='70'>备注</th> 
+			   <th width='50'>充值状态</th>
+			   <th width='50'>备注</th>
+             </tr>
+           </thead>
+           <tbody> 
+            <volist name="Page['root']" id="vo" key='i'>
+             <tr>
+               <td>{$i}</td>
+               <td>{$vo['recharge_sn']}</td>
+               <td>{$vo['weipay_sn']}</td>
+               <td>{$vo['userId']}</td>
+               <td>{$vo['loginName']}</td>
+               <td>{$vo['userName']}</td>
+               <td>{$vo['recharge_money']}</td>
+               <td>{$vo['receive_money']}</td>
+               <td><?php echo $vo['add_time']?date('Y-m-d H:i:s',$vo['add_time']):'';?></td>
+               <td><?php echo $vo['pay_time']?date('Y-m-d H:i:s',$vo['pay_time']):'';?></td>
+               <td>{$vo['receive_money']}</td>
+               <td>
+	               <if condition="$vo['recharge_status'] eq 0">未支付</if>
+	               <if condition="$vo['recharge_status'] eq 1">已支付</if>        
+               </td>
+               <td>{$vo['remark']}</td>
+             </tr>
+             </volist>
+             <tr>
+                <td colspan='16' align='center'>{$Page['pager']}</td>
+             </tr>
+           </tbody>
+        </table>
+       </div>
+   </body>
+</html>

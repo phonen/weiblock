@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{$CONF['shopTitle']['fieldValue']}后台管理中心</title>
+      <link href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="__ROOT__/Apps/Admin/View/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+      <!--[if lt IE 9]>
+      <script src="__PUBLIC__/js/html5shiv.min.js"></script>
+      <script src="__PUBLIC__/js/respond.min.js"></script>
+      <![endif]-->
+      <script src="__PUBLIC__/js/jquery.min.js"></script>
+      <script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script src="__PUBLIC__/js/common.js"></script>
+      <script src="__PUBLIC__/plugins/plugins/plugins.js"></script>
+      <script src="__PUBLIC__/plugins/formValidator/formValidator-4.1.3.js"></script>
+   </head>
+   <style>
+   input[type=checkbox] {margin-right:2px;}
+   </style>
+   <script>
+   $(function () {
+	   $.formValidator.initConfig({
+		   theme:'Default',mode:'AutoTip',formID:"myform",debug:true,submitOnce:true,onSuccess:function(){
+				   edit();
+			       return false;
+			},onError:function(msg){
+		}});
+	   $("#roleName").formValidator({onFocus:"角色名称至少要输入1个字符",onCorrect:"输入正确"}).inputValidator({min:1,max:20,onError:"你输入的长度不正确,请确认"});
+	   var grant = '{$object["grant"]}'.split(',');
+	   for(var i=0;i<grant.length;i++){
+			$('#'+grant[i]).prop('checked',true);
+	   }
+   });
+   function edit(){
+	   var params = {};
+	   params.id = $('#id').val();
+	   params.roleName = $('#roleName').val();
+	   var grant = [];
+	   $('.grant').each(function(){
+		   if($(this).prop('checked'))grant.push($(this).val());
+	   });
+	   params.grant = grant.join(',');
+	   if(grant.length==0){
+		   Plugins.Tips({title:'信息提示',icon:'error',content:'请至少选择一个权限!',timeout:1000});
+		   return;
+	   }
+	   Plugins.waitTips({title:'信息提示',content:'正在提交数据，请稍后...'});
+		$.post("{:U('Admin/Roles/edit')}",params,function(data,textStatus){
+			var json = WST.toJson(data);
+			if(json.status=='1'){
+				Plugins.setWaitTipsMsg({ content:'操作成功',timeout:1000,callback:function(){
+				   location.href="{:U('Admin/Roles/index')}";
+				}});
+			}else{
+				Plugins.closeWindow();
+				Plugins.Tips({title:'信息提示',icon:'error',content:'操作失败!',timeout:1000});
+			}
+		});
+   }
+   function checkModel(v){
+		$('.'+$(v).val()).each(function(){
+			$(this).prop('checked',$(v).prop('checked'));
+		})
+	}
+   </script>
+   <body class="wst-page">
+       <form name="myform" method="post" id="myform" autocomplete="off">
+        <input type='hidden' id='id' value='{$object.roleId}'/>
+        <table class="table table-hover table-striped table-bordered wst-form">
+           <tr>
+             <th width='120' align='right'>角色名称<font color='red'>*</font>：</th>
+             <td><input type='text' id='roleName' class="form-control wst-ipt" value='{$object.roleName}' maxLength='25'/></td>
+           </tr>
+           <tr>
+             <th align='right'>权限列表<font color='red'>*</font>：</th>
+             <td>
+             <table width='100%'>
+
+                <tr style='border-top:1px solid #dddddd'>
+                   <td rowspan='3' valign='top' width='100'><label><input type='checkbox' value='zjgl' class='chk' onclick='javascript:checkModel(this)'/>资金管理</label></td>
+                   <td width='90' colspan='2'><label><input type='checkbox' class='chk grant zjgl' id='zjgl_00' value='zjgl_00' onclick='javascript:checkModel(this)'/>查看资金管理栏目</label></td> 
+                </tr>
+                <tr>
+                   <td width='90'><label><input type='checkbox' class='chk zjgl' value='txgl' onclick='javascript:checkModel(this)'/>提现管理</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant zjgl txgl' id='txgl_00' value='txgl_00'/>提现列表</label>
+                   <label><input type='checkbox' class='chk grant zjgl txgl' id='txgl_00' value='txgl_04'/>提现处理</label>
+                   </td>
+                </tr>
+                <tr>
+                   <td width='90'><label><input type='checkbox' class='chk zjgl' value='zjls' onclick='javascript:checkModel(this)'/>资金流水</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant zjgl zjls' id='zjls_00' value='zjls_00'/>资金流水</label>
+                   </td>
+                </tr>
+                
+             	<tr style='border-top:1px solid #dddddd'>
+                   <td rowspan='4' valign='top' width='100'><label><input type='checkbox' class='chk hygl' value='hygl' onclick='javascript:checkModel(this)'/>会员管理</label></td>
+                   <td width='90' colspan='2'><label><input type='checkbox' class='chk grant hygl' id='hygl_00' value='hygl_00' onclick='javascript:checkModel(this)'/>查看会员管理栏目</label></td>
+                </tr>
+                
+                <tr>
+                <td ><label><input type='checkbox' class='chk hygl' value='hylb' onclick='javascript:checkModel(this)'/>会员列表</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant hygl hylb' id='hylb_00' value='hylb_00'/>会员列表</label>
+                   <label><input type='checkbox' class='chk grant hygl hylb' id='hylb_01' value='hylb_01'/>新增会员</label>
+                   <label><input type='checkbox' class='chk grant hygl hylb' id='hylb_02' value='hylb_02'/>修改会员</label>
+                   <label><input type='checkbox' class='chk grant hygl hylb' id='hylb_03' value='hylb_03'/>删除会员</label>
+                   </td>
+                </tr>
+                <tr>
+                   <td ><label><input type='checkbox' class='chk hygl' value='hyzh' onclick='javascript:checkModel(this)'/>账号管理</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant hygl hyzh' id='hyzh_00' value='hyzh_00'/>账号列表</label>
+                   <label><input type='checkbox' class='chk grant hygl hyzh' id='hyzh_04' value='hyzh_04'/>账号操作</label>
+                   </td>
+                </tr>
+                <tr style='border-top:1px solid #dddddd'>
+                   <td rowspan='5' valign='top' width='100'><label><input type='checkbox' value='fxgl' onclick='javascript:checkModel(this)'/>分销管理</label></td>
+                   <td width='90' colspan='2'><label><input type='checkbox' class='chk grant fxgl' id='fxgl_00' value='fxgl_00' onclick='javascript:checkModel(this)'/>查看分销管理栏目</label></td>
+                </tr>
+               
+                <tr>
+                	<td colspan="2"><label><input type='checkbox' class='chk grant fxgl' id='fxgl_03' value='fxgl_03' onclick='javascript:checkModel(this)'/>佣金分成列表</label></td>
+                </tr>
+                <tr>
+                	<td colspan="2"><label><input type='checkbox' class='chk grant fxgl' id='fxgl_04' value='fxgl_04' onclick='javascript:checkModel(this)'/>推广用户列表</label></td>
+                </tr>
+                
+               
+                
+                <tr style='border-top:1px solid #dddddd'>
+                   <td rowspan='4' valign='top' width='100'><label><input type='checkbox' class='chk' value='xtgl' onclick='javascript:checkModel(this)'/>系统管理</label></td>
+                   <td width='90' colspan='2'><label><input type='checkbox' class='chk grant xtgl' id='xtgl_00' value='xtgl_00' onclick='javascript:checkModel(this)'/>查看系统管理栏目</label></td>
+                </tr>
+                <tr>
+                   <td width='90'><label><input type='checkbox' class='chk xtgl' value='jsgl' onclick='javascript:checkModel(this)'/>角色管理</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant xtgl jsgl' id='jsgl_00' value='jsgl_00'/>角色列表</label>
+                   <label><input type='checkbox' class='chk grant xtgl jsgl' id='jsgl_01' value='jsgl_01'/>新增角色</label>
+                   <label><input type='checkbox' class='chk grant xtgl jsgl' id='jsgl_02' value='jsgl_02'/>修改角色</label>
+                   <label><input type='checkbox' class='chk grant xtgl jsgl' id='jsgl_03' value='jsgl_03'/>删除角色</label>
+                   </td>
+                </tr>
+                <tr>
+                   <td ><label><input type='checkbox' class='chk xtgl' value='zylb' onclick='javascript:checkModel(this)'/>职员列表</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant xtgl zylb' id='zylb_00' value='zylb_00'/>职员列表</label>
+                   <label><input type='checkbox' class='chk grant xtgl zylb' id='zylb_01' value='zylb_01'/>新增职员</label>
+                   <label><input type='checkbox' class='chk grant xtgl zylb' id='zylb_02' value='zylb_02'/>修改职员</label>
+                   <label><input type='checkbox' class='chk grant xtgl zylb' id='zylb_03' value='zylb_03'/>删除职员</label>
+                   </td>
+                </tr>
+                <tr>
+                   <td><label><input type='checkbox' class='chk xtgl' value='dlrz' onclick='javascript:checkModel(this)'/>登录日志</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant xtgl dlrz' id='dlrz_00' value='dlrz_00'/>日志列表</label>
+                   </td>
+                </tr>
+                 <tr style='border-top:1px solid #dddddd'>
+                   <td rowspan='8' valign='top' width='100'><label><input type='checkbox' class='chk scsz' value='scsz' onclick='javascript:checkModel(this)'/>商城设置</label></td>
+                   <td width='90' colspan='2'><label><input type='checkbox' class='chk grant scsz' id='scsz_00' value='scsz_00' onclick='javascript:checkModel(this)'/>查看商城设置栏目</label></td>                   
+                </tr>
+                <tr>
+                   <td width='90'><label><input type='checkbox' class='chk scsz' value='scxx' onclick='javascript:checkModel(this)'/>商城信息</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant scsz scxx' id='scxx_00' value='scxx_00'/>商城信息</label>
+                   <label><input type='checkbox' class='chk grant scsz scxx' id='scxx_02' value='scxx_02'/>商城信息修改</label>
+                   </td>
+                </tr>
+                
+                <tr>
+                   <td ><label><input type='checkbox' class='chk scsz' value='zfgl' onclick='javascript:checkModel(this)'/>支付管理</label></td>
+                   <td>
+                   <label><input type='checkbox' class='chk grant scsz zfgl' id='zfgl_00' value='zfgl_00'/>支付列表</label>
+                   <label><input type='checkbox' class='chk grant scsz zfgl' id='zfgl_01' value='zfgl_01'/>安装支付</label>
+                   <label><input type='checkbox' class='chk grant scsz zfgl' id='zfgl_02' value='zfgl_02'/>编辑支付</label>
+                   <label><input type='checkbox' class='chk grant scsz zfgl' id='zfgl_03' value='zfgl_03'/>卸载支付</label>
+                   </td>
+                </tr>
+             </table>
+             </td>
+           </tr>
+           <tr>
+             <td colspan='2' style='padding-left:250px;'>
+                 <button type="submit" class="btn btn-success">保&nbsp;存</button>
+                 <button type="button" class="btn btn-primary" onclick='javascript:location.href="{:U('Admin/Roles/index')}"'>返&nbsp;回</button>
+             </td>
+           </tr>
+        </table>
+       </form>
+   </body>
+</html>

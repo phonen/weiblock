@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" /><!-- 删除苹果默认的工具栏和菜单栏 -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!-- 设置苹果工具栏颜色 -->
+        <meta name="format-detection" content="telephone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+        <!-- 启用360浏览器的极速模式(webkit) -->
+        <meta name="renderer" content="webkit">
+        <!-- 避免IE使用兼容模式 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+        <meta name="HandheldFriendly" content="true">
+        <!-- 微软的老式浏览器 -->
+        <meta name="MobileOptimized" content="320">
+        <!-- uc强制竖屏 -->
+        <meta name="screen-orientation" content="portrait">
+        <!-- QQ强制竖屏 -->
+        <meta name="x5-orientation" content="portrait">
+        <!-- UC强制全屏 -->
+        <meta name="full-screen" content="yes">
+        <!-- QQ强制全屏 -->
+        <meta name="x5-fullscreen" content="true">
+        <!-- UC应用模式 -->
+        <meta name="browsermode" content="application">
+        <!-- QQ应用模式 -->
+        <meta name="x5-page-mode" content="app">
+        <!-- windows phone 点击无高光 -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- 适应移动端end -->   
+        <title>交.易明细</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/orderLog.css" />
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/index.js"></script>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="top_tit">
+                <div class="cxd ">游戏明细</div>
+                <div >交.易明细</div>
+                <div>提.现记录</div>
+            </div>
+            <!-- 游戏明细盒子 -->
+            <div class="game_box game_box1">
+             <volist name="trades" id="vo" key='i'>
+             <div class="zu_row">
+                    <div class="jia_box">
+                        <span>龙神夺宝</span>
+                        <span class="hongse"><if condition="$vo['is_draw'] eq 0">亏损{$vo['trade_money']}<else/>盈利<?php echo $vo['draw_money']- $vo['trade_money'];?></if> </span>
+                    </div>
+                    <div class="two_low">
+                        <span class="ptdh">平台单号</span>
+                        <span class="danki">{$vo['trade_sn']}</span>
+                    </div>
+                    <div class="two_low">
+                        <span class="ptdh">夺.宝下单</span>
+                        <span class="danki">{$vo['trade_money']}金</span>
+                    </div>
+                    <div class="two_low">
+                        <span class="ptdh">判断方向</span>
+                        <span class="danki">  <?php echo getGameTypeName($vo['game_type'],$vo['type']);?>  </span>
+                    </div>
+                    <div class="two_low">
+                        <span class="ptdh">微信单号</span>
+                        <span class="danki">{$vo['weipay_sn']}</span>
+                    </div>
+                    <!-- <div class="two_low">
+                        <span class="ptdh">夺.宝亏.损</span>
+                        <span class="danki">-10.00金</span>
+                    </div> -->
+                    <div class="two_low">
+                        <span class="ptdh">手续费</span>
+                        <span class="danki">-{$vo['poundage_money']}金</span>
+                    </div>
+                    <div class="two_low">
+                        <span class="ptdh">平台时间</span>
+                        <span class="danki">{$vo['add_time']|date='Y-m-d H:i:s',###}</span>
+                    </div>
+                 </div>
+                 </volist>
+            </div>
+            <!-- 资金明细 -->
+            
+                <div class="game_box game_box2">
+                <volist name="moneys" id="vo" key='i'>
+                       <div class="zu_row">
+                            <div class="two_low two_low2">
+                                <div class="eru">
+                                     <p>  {$vo['dataSrc']|getMoneySrc}  </p>                    
+                                     <p class="time_box"><?php echo $vo['createTime']?date('Y-m-d H:i:s',$vo['createTime']):"";?></p>
+                                </div>
+                                <div class="right_wr">{$vo['money']}金</div>
+                            </div>
+                        </div>
+                   </volist>    
+                   </div>
+            
+            <!-- 提现记录 -->
+            
+                <div class="game_box game_box3">
+	                <volist name="cash_draws" id="vo" key='i'>
+	                    <div class="zu_row">
+	                        <div class="two_low two_low2">
+	                            <div class="eru">
+	                                 <p>
+	                                                                     提现  
+	                                 </p>                    
+	                                 <p class="time_box">{$vo['createTime']}</p>
+	                            </div>
+	                            <div class="right_wr">{$vo['money']}金</div>
+	                        </div>
+	                    </div>
+	                 </volist>
+               </div>
+            
+        </div>
+         <!-- 返回按钮 -->
+        <div class="back_box"><a href="{:U('users/index')}">返回</a></div>
+    </body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        var my_length=$('.zhongj').length;
+        for(i=0;i<my_length;i++){
+          var mymy= $('.zhongj').eq(i).text();
+          if(mymy==="中奖"){
+            $('.zhongj').eq(i).removeClass('huang')
+             $('.zhongj').eq(i).siblings('.hongse').css('color','#ec3702')
+          }else{
+             $('.zhongj').eq(i).addClass('huang');
+             $('.zhongj').eq(i).siblings('.hongse').css('color','#07af2a')
+          }
+        }
+
+
+
+        $('.top_tit>div').click(function(event) {
+                $(this).addClass('cxd').siblings().removeClass('cxd');
+                var my_mpoi=$(this).index();
+                $('.game_box').eq(my_mpoi).show().siblings('.game_box').hide();
+        });
+    })
+</script>

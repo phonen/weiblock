@@ -1,0 +1,19 @@
+        <div class="ui-loading-wrap wst-Load" id="Load">
+		    <i class="ui-loading"></i>
+		</div>
+        <footer class="ui-footer wst-footer-btns" style="height:41px; border-top: 1px solid #e0e0e0;" id="footer">
+        	<div class="wst-toTop" id="toTop">
+			  <i><img src="__ROOT__/Apps/WeChat/View/default/images/top.png" class="wst-toTopimg"></i>
+			</div>
+            <div class="ui-row-flex wst-menus">
+			    <div class="ui-col ui-col"><a href="{:U('WeChat/Index/index')}"><p id="home"></p></a></div>
+			    <div class="ui-col ui-col"><a href="javascript:void(0);" onclick="javascript:brandsLists();"><p id="brand"></p></a></div>
+			    <div class="ui-col ui-col"><a href="javascript:void(0);" onclick="javascript:toGoodsCat();"><p id="category"></p></a></div>
+			    <div class="ui-col ui-col"><a href="{:U('WeChat/Cart/index')}"><p id="cart">
+			    <div class="ui-badge-wrap wst-badge-wrapi">
+                	<div class="wst-menu_cars" id="cartGoodsNum" <?php $cartNum = WSTCartNum();if(!$cartNum>0){ echo 'style="display:none;"';}?>><?php $cartNum = WSTCartNum();if($cartNum>0){ echo $cartNum;}?></div>
+                </div>
+                </p></a></div>
+			    <div class="ui-col ui-col"><a href="{:U('WeChat/Users/index')}"><p id="users"></p></a></div>
+			</div>
+        </footer>

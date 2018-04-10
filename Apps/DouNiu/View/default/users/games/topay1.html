@@ -1,0 +1,27 @@
+
+   <script type="text/javascript">
+      layer.open({  
+	    type: 2
+	    ,content: '请稍候...'
+	  });
+      var tradeid = {$trade_id};
+      $.ajax({
+      	type:'post',
+      	url:"{:U('Games/doGame')}",
+      	data:{trade_id:tradeid},
+      	success:function(result){ 
+      		window.setTimeout(function(){
+      			layer.open({ 
+          	    	content: result.msg ,
+          	    	skin: 'msg' ,
+          	    	time: 1 //3秒后自动关闭
+    	        });
+    	    	
+        	},1000);
+      		window.setTimeout(function(){
+      			window.location.href = result.url;
+        	},3000);
+      		
+           }
+      });
+   </script>

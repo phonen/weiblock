@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" /><!-- 删除苹果默认的工具栏和菜单栏 -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!-- 设置苹果工具栏颜色 -->
+        <meta name="format-detection" content="telephone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+        <!-- 启用360浏览器的极速模式(webkit) -->
+        <meta name="renderer" content="webkit">
+        <!-- 避免IE使用兼容模式 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+        <meta name="HandheldFriendly" content="true">
+        <!-- 微软的老式浏览器 -->
+        <meta name="MobileOptimized" content="320">
+        <!-- uc强制竖屏 -->
+        <meta name="screen-orientation" content="portrait">
+        <!-- QQ强制竖屏 -->
+        <meta name="x5-orientation" content="portrait">
+        <!-- UC强制全屏 -->
+        <meta name="full-screen" content="yes">
+        <!-- QQ强制全屏 -->
+        <meta name="x5-fullscreen" content="true">
+        <!-- UC应用模式 -->
+        <meta name="browsermode" content="application">
+        <!-- QQ应用模式 -->
+        <meta name="x5-page-mode" content="app">
+        <!-- windows phone 点击无高光 -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- 适应移动端end -->   
+        <title>充.值</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/card.css" />
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/TouchSlide.1.1.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/index.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/plugins/layer_mobile/layer.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="top_tit">
+            <div class="top_left">
+                <p>ID</p>
+                <p>{$user['loginName']}</p>
+            </div>
+            <div class="top_right">
+                <p class="ky">可用余额</p>
+                <p class="money_box">{$user['userMoney']}</p>
+            </div>
+        </div>
+        <div class="six_box">
+            <p class="czsgb">快速充.值</p>
+            <ul>
+                <li class="on">10</li>
+                <li>20</li>
+                <li>50</li>
+                <li>100</li>
+                <li>200</li>
+                <li>500</li>
+            </ul>
+        </div>
+        
+        <div class="sure_box" id='weixin'>微信充.值</div>
+        <div class="sure_box" id='zspay'>掌上充值</div> 
+        <!--<div class="sure_box" id='alipay'>支付宝充.值</div>
+        <div class="sure_box" id='qq'>QQ充.值</div>
+        <div class="sure_box" id='wy'>网.银.支.付</div>
+        <div class="sure_box" id='qrpay' onclick="qrcodepay();">微信支付(推荐)</div>
+        <div class="sure_box" id='rgpay' onclick="rgpay();">人工充值</div>-->
+        <script>
+            function rgpay(){
+            	layer.open({
+    	            title: [
+    	              '人工充值客服',
+    	              'background-color: #ff8043; color:#fff;'
+    	            ]
+    	            ,content: '<img src="{:WSTDomain()}/{$CONF['bjcw']}"/>'
+    	          });
+            }
+        </script>
+    </div>
+     <!-- 选择充.值渠道 -->
+    <div class="cz_qd none">
+        <div class="cz_fs">
+            <div class="cz_zu" onclick='chargeType(2)'>
+                <div class="dui"></div>
+                <img src="__PUBLIC__/static/bajie2/images/wx.png" alt="" />
+                <span>微信支付</span>
+                <span class="cz_jinew"><span class='charge_money'>15</span><em>元</em></span> 
+            </div>
+            <div class="cz_zu"  onclick='chargeType(3)'>
+                <div class="dui on" ></div>
+                <img src="__PUBLIC__/static/bajie2/images/qq.png" alt="" />
+                <span>QQ支付</span>
+                <span class="cz_jinew"><span class='charge_money'>15</span><em>元</em></span>
+            </div>
+            <div class="cz_zu" onclick='chargeType(1)'>
+                <div class="dui"></div>
+                <img src="__PUBLIC__/static/bajie2/images/zfb.png" alt="" />
+                <span>支付宝支付</span>
+                <span class="cz_jinew"><span class='charge_money'>15</span><em>元</em></span>
+            </div>
+            <input id='charge_money' style="display: none" value="5" />
+            <input id='charge_type' style="display: none" value="3" />
+            <div class="cz_fsl">
+                <div class="qxiao">取消</div>
+                <div class="que_df" onclick="recharge()">确定</div>
+            </div>
+            <div class="del">x</div>
+        </div>
+    </div>
+    <!-- 返回 -->
+    <div class="back_box">
+        <a href="{:U('Users/index')}">返回</a>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('.cz_zu').click(function(event) {
+                $('.dui').removeClass('on');
+                $(this).find('.dui').addClass('on');
+        });
+        $('.del,.qxiao').click(function(event) {
+                $('.cz_box,.cz_qd,.hong_box ').addClass('none');
+        });
+        var mymy=$('.hui_on').index();
+        $('.jiy>div').eq(mymy).show();
+        $('.six_box li').click(function(event) {
+            
+            var my_index=$(this).text();
+            $('.czsgb').show();
+            $('.bdui').hide();
+            $('.czsgb em').text(my_index*10)
+                $(this).addClass('on').siblings().removeClass('on')
+        });
+        $('#weixin').click(function(){
+            var amount = $('.on').eq(0).text();
+            var url = "/index.php?m=BaJie&c=Recharge&a=codePay&Amount="+amount+'&type=wxpay';
+			location.href=url;
+            // var url = "/Index/rechargeIn.html?amount="+amount;
+        });
+        $('#alipay').click(function(){
+			alert('支付宝升级维护中');return false;
+			if(amount < 200){
+				alert('支付宝单次交易最低200');return false;
+			}
+            var amount = $('.on').eq(0).text();
+            var url = "/Index/rechargeIn.html?amount="+amount+'&type=alipay';
+            location.href=url;
+        });
+        $('#qq').click(function(){
+			alert('QQ支付升级维护中');return false;
+            var amount = $('.on').eq(0).text();
+            var url = "/Index/rechargeIn.html?amount="+amount+'&type=qqpay';
+            location.href=url;
+        });
+		$('#wy').click(function(){
+            var amount = $('.on').eq(0).text();
+            var url = "/Index/rechargeIn.html?amount="+amount+'&type=bank_pay';
+            location.href=url;
+        });
+		$('#zspay').click(function(){
+			var amount = $('.on').eq(0).text();//充值金额
+			var IDuser = "{$user['userId']}";
+		    var date = new Date();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = date.getFullYear() + month  + strDate + date.getHours()  + date.getMinutes() + date.getSeconds();
+			
+			var iChoice = 10-100+1;
+			var nTemp = Math.abs(Math.floor(Math.random()*iChoice))+10;
+			nTemp = amount-1+nTemp/100;
+			window.location.href = 'http://zspay.cn/pay.php?appid=920&tyid=2&zh='+IDuser+"."+currentdate+'&jine='+nTemp;
+        });
+		
+		$('#rgpay').click(function (event) {
+            $('.layer_bg').show();
+            $('.slideBox').css('opacity', '1')
+            $('.slideBox').css('top', '2rem')
+        });
+		
+		$('#qrpay').click(function (event) {
+			var amount = $('.on').eq(0).text();//充值金额
+			var IDuser = "{$user['userId']}";
+		    var date = new Date();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = date.getFullYear() + month  + strDate + date.getHours()  + date.getMinutes() + date.getSeconds();
+			var iChoice = 10-100+1;
+			var nTemp = Math.abs(Math.floor(Math.random()*iChoice))+10;
+			nTemp = amount-1+nTemp/100;
+			window.location.href = '/index.php?m=BaJie&c=Recharge&a=pay&Amount='+amount+'&order_id='+IDuser+"."+currentdate;
+        });
+    })
+</script>

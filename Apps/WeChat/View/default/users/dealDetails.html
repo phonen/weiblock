@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>各项明细-{$CONF['mallName']}</title>
+    <style>
+        .router-link-active {
+            color: #ff5d5b
+        }
+        .black {
+            color: #000;
+            font-size: 0.32rem;
+        }
+        .red {
+            color: #f00;
+            font-size: 0.32rem;
+        }
+        .tit {
+            margin-bottom: 0.3rem;
+        }
+        .dealDetailsbox {
+            width: 100%;
+            padding: 0.2rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .dealDetailsbox .tabs {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        .dealDetailsbox .tabs .tab {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            text-align: center;
+            background: #fff;
+            height: 0.9rem;
+            line-height: 0.9rem;
+            color: #999;
+            font-size: 0.4rem;
+            border-radius: 5px;
+        }
+        .dealDetailsbox .tabs .tab + .tab {
+            margin-left: 10px;
+        }
+        .dealDetailsbox .tabs .blue {
+            color: #fff !important;
+            background: #1d77ba !important;
+        }
+        .dealDetailsbox .tabs .red {
+            color: #fff !important;
+            background: #ff5d5b !important;
+        }
+        .dealDetailsbox .list_box {
+            margin-top: 0.3rem;
+        }
+        .dealDetailsbox .list_box .lists {
+            padding: 0.2rem;
+            border-radius: 5px;
+            background: #fff;
+            margin-bottom: 0.3rem;
+        }
+        .dealDetailsbox .list_box .lists .list {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            color: #999;
+        }
+        .dealDetailsbox .list_box .lists .list .fl {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            text-align: left;
+            line-height: 1.5;
+        }
+        .dealDetailsbox .list_box .lists .list .fr {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            text-align: right;
+            line-height: 1.5;
+        }
+        .ps {
+            color: #999;
+            padding-bottom: 0.3rem;
+            text-align: center;
+        }
+
+	.foot{
+			width: 100%;
+			height: 30px;
+			position: fixed;
+			bottom: 0;
+			text-align: center;
+			background: #f16262;
+			color: #fff;
+		}
+		
+		.foot a{
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+			font-size: 16px;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 3px;
+		}
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class='dealDetailsbox'>
+        <div>
+            <ul class='tabs'>
+                <li class='tab' :class='active?"blue":""' @click='show'>交易</li>
+                <li class='tab' :class='!active?"red":""' @click='show'>资金</li>
+            </ul>
+        </div>
+        <div class='list_box' v-show='active'>
+           <volist name="trades" id="vo" key='i'>
+            <div class='lists'>
+                <ul>
+                    <li class='list tit'>
+                        <span class='fl black'>结果</span>
+                        <span class='fr red'><if condition="$vo['is_draw'] eq 0">亏损{$vo['trade_money']}<else/>盈利<?php echo $vo['draw_money']- $vo['trade_money'];?></if></span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>买入金额</span>
+                        <span class='fr'>{$vo['trade_money']}豆</span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>买入号码</span>
+                        <span class='fr'>{$vo['selectd_num']}</span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>微信单号</span>
+                        <span class='fr'>{$vo['weipay_sn']}</span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>盈利</span>
+                        <span class='fr'>+ {$vo['draw_money']}豆</span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>下单时间</span>
+                        <span class='fr'>{$vo['add_time']|date='Y-m-d H:i:s',###}</span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>手续费</span>
+                        <span class='fr'>- {$vo['poundage_money']}豆</span>
+                    </li>
+                </ul>
+            </div>
+          </volist>  
+        </div>
+        
+        
+        <div class='list_box' v-show='!active'>
+            <volist name="moneys" id="vo" key='i'>
+            <div class='lists'>
+                <ul>
+                    <li class='list tit'>
+                        <span class='fl black'>{$vo['dataSrc']|getMoneySrc}</span>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>账户余额{$vo['userMoney']}豆</span>
+                        <if condition="$vo['type'] eq 0">
+                        <span class='fr'><if condition="$vo['moneyType'] eq 0">-<else/>+</if> {$vo['money']}豆</span>
+                        </if>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>红包余额{$vo['redPacketMoney']}豆</span>
+                        <if condition="$vo['type'] eq 1">
+                        <span class='fr'><if condition="$vo['moneyType'] eq 0">-<else/>+</if> {$vo['money']}豆</span>
+                        </if>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'>佣金余额{$vo['distributMoney']}豆</span>
+                        <if condition="$vo['type'] eq 2">
+                        <span class='fr'><if condition="$vo['moneyType'] eq 0">-<else/>+</if> {$vo['money']}豆</span>
+                        </if>
+                    </li>
+                    <li class='list'>
+                        <span class='fl'><?php echo $vo['createTime']?date('Y-m-d H:i:s',$vo['createTime']):"";?></span>
+                    </li>
+                </ul>
+            </div>
+            </volist>
+        </div>
+        <p class='ps'>只显示最近10次{{txt}}</p>
+    </div>
+	<div class='foot'><a href="{:U('Users/Index')}" >返回首页</a>
+	</div>
+	<!--
+    <footer class="m-tabbar tabbbar-top-line-color tabbar-fixed"
+            style="color: rgb(153, 153, 153); background-color: rgb(255, 255, 255); font-size: 0.24rem;">
+        <a href="{:U('Users/Index')}" class="tabbar-item tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-home" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">首页</span>
+        </a>
+        <a href="{:U('Users/toUserInfo')}" class="tabbar-item router-link-exact-active router-link-active tabbar-active">
+                    <span class="tabbar-icon">
+                        <i class="icon-ucenter" style="font-size: 0.54rem;"></i>
+                        <span class="tabbar-badge"></span>
+                    </span>
+            <span class="tabbar-txt">我的</span>
+        </a>
+    </footer>-->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data(){
+            return {
+                active: true,
+                txt:'交易结果'
+            }
+        },
+        created() {
+
+        },
+        mounted() {
+
+        },
+        methods: {
+            show(){
+                this.active = !this.active
+                if(this.active) this.txt = "交易结果"
+                else this.txt = "资金明细"
+            }
+        },
+    })
+</script>
+</body>
+</html>

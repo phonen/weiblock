@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" /><!-- 删除苹果默认的工具栏和菜单栏 -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!-- 设置苹果工具栏颜色 -->
+        <meta name="format-detection" content="telephone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+        <!-- 启用360浏览器的极速模式(webkit) -->
+        <meta name="renderer" content="webkit">
+        <!-- 避免IE使用兼容模式 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+        <meta name="HandheldFriendly" content="true">
+        <!-- 微软的老式浏览器 -->
+        <meta name="MobileOptimized" content="320">
+        <!-- uc强制竖屏 -->
+        <meta name="screen-orientation" content="portrait">
+        <!-- QQ强制竖屏 -->
+        <meta name="x5-orientation" content="portrait">
+        <!-- UC强制全屏 -->
+        <meta name="full-screen" content="yes">
+        <!-- QQ强制全屏 -->
+        <meta name="x5-fullscreen" content="true">
+        <!-- UC应用模式 -->
+        <meta name="browsermode" content="application">
+        <!-- QQ应用模式 -->
+        <meta name="x5-page-mode" content="app">
+        <!-- windows phone 点击无高光 -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- 适应移动端end -->   
+        <title>我的团.队</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/global.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/my_team.css">
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+       <!--  <div class="top_tit">
+            <div class="cxd">我的家族</div>
+            <div>佣金明细</div>
+            <div><a href="/User/myqrCode.html" style="display:block;width:100%;height:100%;color:#333;">点我赚钱</a></div>
+        </div> -->
+        <!-- 我的团.队 -->
+        <div class="big_box">
+            <div class="wdxx">
+                <div class="zi">我的团.队</div>
+                <div class="ul_box">
+                    <ul>
+                        <li>
+                            <p>状元</p>
+                            <p class="yiji">{$res['0']['cnt']}</p>
+                        </li>
+                        <li>
+                            <p>探花</p>
+                            <p class="yiji">{$res['1']['cnt']}</p>
+                        </li>
+                        <li>
+                            <p>榜眼</p>
+                            <p class="yiji">{$res['2']['cnt']}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--
+             <div class="wdxx wdxxx">
+                <div class="zi">积.分</div>
+                <div class="ul_box ul_box1">
+                    <ul>
+                        <li>
+                            <p>今日积.分</p>
+                            <p class="yiji">
+                            0                            </p>
+                        </li>
+                        <li>
+                            <p>总积.分</p>
+                            <p class="yiji">
+                            0                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+             --><!-- 返回 -->
+            <div class="back_box">
+                <a href="{:U('Users/index')}">返回</a>
+            </div>
+        </div>
+        <!-- 佣金明细 -->
+        <div class="big_box big_box2">
+                         <!-- 返回 -->
+            <div class="back_box">
+                <a href="{:U('Users/index')}">返回</a>
+            </div>
+        </div>
+        <!-- 点我赚钱 -->
+       <!--  <div class="big_box big_box3">
+            <div class="djht">点击更换图片</div>
+            <p class="casb">长按图片，选择保存图片</p>
+            <div class="img_box">
+                <img src="/Public/Home/images/crazyFruit/loi.png"  alt="" />
+            </div>
+        </div> -->
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('.top_tit>div').click(function(event) {
+             $(this).addClass('cxd').siblings().removeClass('cxd');
+             var my_index=$(this).index();
+             $('.big_box').eq(my_index).show().siblings('.big_box').hide();
+        });
+        var my_height=$('body').height();
+        if(my_height<=480){
+            $('.img_box').css('height','21rem')
+        }
+    })
+</script>

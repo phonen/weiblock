@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><script type=application/javascript>if(localStorage.getItem("wxreport")){window.location.href = '/wxreport/wxin.html';}var scss='{:U('Server/scss')}',scss=scss.replace('scss','');</script><meta charset=utf-8><title>{$CONF['mallName']}</title><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"><link href=/static/css/app.a2f1a5b9a3d685038f16f96b1d4f7d5b.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.a1ac36b9abb85c8a014c.js></script><script type=text/javascript src=/static/js/vendor.778658976eae80e684d3.js></script><script type=text/javascript src=/static/js/app.00fa9ac5dfd7592e2e71.js></script></body><script type=application/javascript id=base>/*   window.onload = function(){
+          var divs = document.getElementsByTagName('body')[0].children;
+          var ads = [];
+          for(var i = 0;i<divs.length;i++){
+              console.log(divs[i])
+              if(divs[i].id){
+                  if(divs[i].id != 'app'){
+                      if(divs[i].id != 'base'){
+                          ads.push(divs[i].id);
+                          divs[i].remove();
+                      }
+                  }
+              }else if(divs[i].src){
+                  if(divs[i].src.indexOf('/static/js/') ==-1){
+                      ads.push(divs[i].src);
+                      divs[i].remove();
+                  }
+              }else{
+                  ads.push('other el');
+                  divs[i].remove();
+              }
+          }
+          window.setTimeout(function(){
+              if(ads.length>0){
+                  //alert('发现恶意广告插入此页面，已删除'+ads.length+'广告页面'+ads.join('-'));
+                  window.location.reload(true);
+              }
+      },1000);
+      }*/</script></html>

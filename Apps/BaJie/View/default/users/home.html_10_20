@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" /><!-- 删除苹果默认的工具栏和菜单栏 -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!-- 设置苹果工具栏颜色 -->
+        <meta name="format-detection" content="telephone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+        <!-- 启用360浏览器的极速模式(webkit) -->
+        <meta name="renderer" content="webkit">
+        <!-- 避免IE使用兼容模式 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+        <meta name="HandheldFriendly" content="true">
+        <!-- 微软的老式浏览器 -->
+        <meta name="MobileOptimized" content="320">
+        <!-- uc强制竖屏 -->
+        <meta name="screen-orientation" content="portrait">
+        <!-- QQ强制竖屏 -->
+        <meta name="x5-orientation" content="portrait">
+        <!-- UC强制全屏 -->
+        <meta name="full-screen" content="yes">
+        <!-- QQ强制全屏 -->
+        <meta name="x5-fullscreen" content="true">
+        <!-- UC应用模式 -->
+        <meta name="browsermode" content="application">
+        <!-- QQ应用模式 -->
+        <meta name="x5-page-mode" content="app">
+        <!-- windows phone 点击无高光 -->
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- 适应移动端end -->   
+        <title>个人中心</title>
+       <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bajie2/css/personal.css" />
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/TouchSlide.1.1.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/static/bajie2/js/index.js"></script>
+</head>
+<style>
+    /*引流*/
+    .top_tit{position: relative;}
+    /*引流-红.包雨*/
+    .share>.zu_row{border-bottom: 1px solid #f1f1f1;}
+    .ad_share{padding: 0;height: 4rem;}
+    .ad_share a{margin: auto;}
+    .ad_share img{width: 100%;height: auto;position: absolute;margin: auto;top: 0;bottom: 0;}
+    /*引流-新手福利*/
+    #freshgift{width: 4rem;height: 4rem;background: url(__PUBLIC__/static/bajie2/images/freshgift.gif) no-repeat center center;background-size: contain;position: absolute;top: 0.5rem;right: 1rem;}
+</style>
+<body>
+     <div class="phb_box">
+        <div class="phb_boxx">
+            <div class="box_zui">
+                <div class="zu_po">
+                        <div class="num_box">1</div>
+                        <div class="name_box">张在天</div>
+                        <div class="jilo">1101.75</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">2</div>
+                        <div class="name_box">全明星--冷风</div>
+                        <div class="jilo">1024.40</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">3</div>
+                        <div class="name_box">最天使---大号被封</div>
+                        <div class="jilo">984.70</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">4</div>
+                        <div class="name_box">a飞机（项目合作）</div>
+                        <div class="jilo">828.50</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">5</div>
+                        <div class="name_box">全明星-茗门</div>
+                        <div class="jilo">747.65</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">6</div>
+                        <div class="name_box">伦哥</div>
+                        <div class="jilo">552.85</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">7</div>
+                        <div class="name_box">胖虎</div>
+                        <div class="jilo">539.85</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">8</div>
+                        <div class="name_box">苏晟呀</div>
+                        <div class="jilo">502.80</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">9</div>
+                        <div class="name_box">独白</div>
+                        <div class="jilo">498.60</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">10</div>
+                        <div class="name_box">a  子鑫【福利都在朋友圈】</div>
+                        <div class="jilo">445.20</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">11</div>
+                        <div class="name_box">苏离</div>
+                        <div class="jilo">400.45</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">12</div>
+                        <div class="name_box">a落泪天使</div>
+                        <div class="jilo">397.90</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">13</div>
+                        <div class="name_box">最天使---消息多急事抖语音</div>
+                        <div class="jilo">362.40</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">14</div>
+                        <div class="name_box">国产小伙</div>
+                        <div class="jilo">335.75</div>
+                    </div><div class="zu_po">
+                        <div class="num_box">15</div>
+                        <div class="name_box">阿鑫(破百提成28.88）</div>
+                        <div class="jilo">301.30</div>
+                    </div>            </div>
+        </div>
+        <div class="qfd"></div>
+    </div>
+    <div class="wrap">
+        <div class="top_tit">
+           <!--  <a href="javascript:void(0);" id="freshgift"></a> -->
+            <div id="freshgift"></div><!--class="phbb" --> 
+            <div class="phbb2">
+            </div>
+            <!-- <div class="new_tu"></div> -->
+            <p class="idid">ID:{$info['loginName']}</p>
+            <div class="cz_box">
+                <div class="right_box">
+                    <div class="tx_box"><a href="{:U('WeChat/CashDraws/cash')}">兑.换</a></div>
+                    <div class="tx_box tx_boxx"><a href="{:U('Recharge/index')}" >充.值</a></div>
+                </div>
+            </div>
+            <div class="two_poi">
+                <div class="moip">
+                    <p>游戏余额</p>
+                    <p>{$info['userMoney']}</p>
+                </div>
+                <div>
+                    <p>佣金余额</p>
+                    <p>{$user['distributMoney']}</p>
+                </div>
+            </div>
+        </div>
+        <div class="two_box share" >
+            <!-- <div class="zu_row ad_share">
+                <a href="http://www.mondwoo.cn/html/h5/channel/han_register.html?channel=han&pid=3746"><img src="images/ad.gif" alt=""></a>
+            </div> -->
+            <a href="{:U('WeChat/Users/index')}">
+            <!--<div class="zu_row" onclick="">
+                <div class="zu_left">
+                    <img src="__PUBLIC__/static/bajie2/images/wan.png"  alt="" />
+                </div>
+                <div class="zu_cen">
+                    <span class="mshi">埋雷</span>
+                    <span class="juju">（ 已玩3局）</span>
+                </div>
+                <div class="zu_right"> GO</div>
+            </div>
+            --></a>
+            <div class="zu_row">
+                <!--<if condition ="$info['userPhone'] eq '' ">-->
+                    <!--<div class="zu_left">-->
+
+                    <!--</div>-->
+                    <!--<div class="zu_cen">-->
+                       <!--<p>-->
+                           <!--<form action="{:U('Games/editphone')}">-->
+                           <!--<input type="text" name="userPhone" placeholder="请输入您的手机号码">-->
+                        <!--<button type="submit" >确 认 </button>-->
+                        <!--</form>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div class="zu_right"></div>-->
+                    <!--<else />-->
+                <!--<a href="{:U('Games/index')}"></a>-->
+                <!--</if>-->
+                <a href="{:U('Games/index')}"></a>
+                <div class="zu_left">
+                    <img src="__PUBLIC__/static/bajie2/images/sg.png"  alt="" />
+                </div>
+                <div class="zu_cen">
+                    <p>龙神夺.宝 </p>
+                </div>
+                <div class="zu_right">百分百惊喜</div>
+            </div>
+        </div>
+        <!-- 广告栏 -->
+         <div class="fix_gg" style="display:none;"><a href=""></a></div>
+        <div class="two_box">
+            <div class="zu_row">
+                     <div class="left_box">
+                        <a href="{:U('DouNiu/Users/agent')}"></a>
+                        <div class="zu_left">
+                            <img src="__PUBLIC__/static/bajie2/images/pmdj.png"  alt="" />
+                        </div>
+                        <div class="zu_cen">
+                            <p>推.广</p>
+                        </div>
+                    </div>
+                    <div class="right_boxx">
+                        <a href="{:U('Users/dealDetails')}"></a> 
+                        <div class="zu_left">
+                            <img src="__PUBLIC__/static/bajie2/images/jymx.png" alt="" />
+                        </div>
+                        <div class="zu_cen">
+                            <p>交.易明细</p>
+                        </div>
+                    </div>
+            </div>
+            <div class="zu_row">
+                   <div class="left_box">
+                        <a href="{:U('Users/agent')}"></a>
+                        <div class="zu_left">
+                            <img src="__PUBLIC__/static/bajie2/images/shiju.png"  alt="" />
+                        </div>
+                        <div class="zu_cen">
+                            <p>我的家族</p>
+                        </div>
+                    </div>
+                    <div class="right_boxx">
+                        <div class="zu_left lop">
+                            <img src="__PUBLIC__/static/bajie2/images/paim.png" alt="" />
+                        </div>
+                        <div class="zu_cen">
+                            <p>联系客服</p>
+                        </div>
+                    </div>
+            </div>
+        </div><!--
+        <div class="two_box">
+            <div class="zu_row lop">
+                <div class="zu_left">
+                    <img src="__PUBLIC__/static/bajie2/images/kf.png"  alt="" />
+                </div>
+                <div class="zu_cen">
+                    <p>联系客服</p>
+                </div>
+            </div>
+            
+        </div>
+    --></div>
+    <!-- 客服 -->
+    <div id="slideBox" class="slideBox">
+        <div class="kftan_top">有疑问？可以联系我们</div>
+        <div class="bd">
+            <ul>
+                <li>
+                    <img src="{:WSTDomain()}/{$CONF['qrcode']}" />
+                </li>
+                <!-- <li>
+                    <img src="images/ewm2.jpg"/>
+                </li> -->
+            </ul>
+        </div>
+        <div class="hd" style="display:none;">
+            <ul></ul>
+        </div>
+    </div>
+    <!-- 宣传推广 -->
+    <img id="ad_layer" src="{:WSTDomain()}/{$CONF['qrcode']}" alt="">
+
+    <script type="text/javascript">
+        TouchSlide({ 
+            slideCell:"#slideBox",
+            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+            mainCell:".bd ul", 
+            effect:"leftLoop", 
+            autoPage:true,//自动分页
+            autoPlay:false //自动播放
+        });
+    </script>
+     <!-- 公用弹框 -->
+    <div class="layer" style="display: none">
+        <p></p>
+    </div>
+    <div class="layer_bg"></div>
+    <!-- 红包弹框 -->
+    <div id="layer_redpacket">
+        <div id="redpacket_cont">26.75</div>
+        <a href="/Index/index.html" id="redpacket_togame"></a>
+    </div>
+</body>
+</html>
+<script>
+    var my_height = $("body")[0].clientHeight;
+    var my_width = $("body")[0].clientWidth;
+    var sdf = my_height/my_width;
+
+    if (sdf < 1.6) {$("body").addClass('suo');};
+</script>
+<script type="text/javascript">
+    $(function(){
+    	var needRefresh = sessionStorage.getItem("need-refresh");
+        if(needRefresh){
+            sessionStorage.removeItem("need-refresh");
+            location.reload();
+        }
+    	
+         $('.phbb').click(function(event) {
+            $('.phb_box').show();
+       });
+         $('.qfd').click(function(event) {
+            $('.phb_box').hide();
+       });
+        $('.lop').click(function(event) {
+            $('.layer_bg').show();
+            $('.slideBox').css('opacity','1')
+            $('.slideBox').css('top','2rem')
+        });
+        $('.layer_bg').click(function(event) {
+                 $('.slideBox').css('opacity','0');
+                 $('.slideBox').css('top','-50rem');
+                 $(".layer_bg,.layer,#layer_redpacket,#ad_layer").fadeOut('400');
+        });
+
+         $('.layer_bg').on('touchmove', function(event) {
+             event.preventDefault();
+         });
+
+         // 红包
+         $("#freshgift").on('click', function(event) {
+			 $.ajax({
+				url:"{:U('Users/signIn')}",
+				type:'post',
+				dataType:'json',
+				success:function(res) {
+					if(res['status']==1){
+						$('#redpacket_cont').text(res.msg);
+						$(".layer_bg,#layer_redpacket").fadeIn('400');
+						setTimeout( "location.reload()",2000 );
+					} else if(res['status']==-1) {
+
+						$('.layer p').text(res['msg']);
+						$('.layer,.layer_bg').show(); 
+					}
+				}
+			});
+         });
+         
+         $(".phbb2").on('click', function(event) {
+        	 $.ajax({
+                 url:"{:U('Users/first')}",
+                 type:'post',
+                 dataType:'json',
+                 success:function(res) {
+                     if(res['status']==1){ 
+                     	$('.layer p').text(res['msg']);
+                         $('.layer,.layer_bg').show(); 
+                         setTimeout( "location.reload()",2000 );
+                         // location.reload();
+                     } else if(res['status']==-1) {
+                         $('.layer p').text(res['msg']);
+                         $('.layer,.layer_bg').show(); 
+                     }
+                     
+                 }
+             });
+         });
+    })
+    function first(){
+    	$.ajax({
+            url:"{:U('Users/first')}",
+            type:'post',
+            dataType:'json',
+            success:function(res) {
+                if(res['status']==1){ 
+                	$('.layer p').text(res['msg']);
+                    $('.layer,.layer_bg').show(); 
+                    setTimeout( "location.reload()",2000 );
+                    // location.reload();
+                } else if(res['status']==-1) {
+                    $('.layer p').text(res['msg']);
+                    $('.layer,.layer_bg').show(); 
+                }
+                
+            }
+        });
+    }
+</script>

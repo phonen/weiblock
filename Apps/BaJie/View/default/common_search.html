@@ -1,0 +1,32 @@
+       <header style="background:#ffffff;" class="ui-header ui-header-positive ui-border-b wst-border-bs">
+     	    <button class="wst-btns" onclick="javascript:communityList();">切换社区</button>
+            <div class="ui-searchbar-wrap searchs wst-index_search">
+            <span class="ui-icon-search search-span" id="search_1"></span>
+			    <div class="ui-searchbar" id="search1">
+			        <div class="ui-searchbar-text wst-community_display" id="community_display">按关键字搜索<?php if(CONTROLLER_NAME=='Shops'){ echo '商店';}else{ echo '商品';}?></div>
+			    </div>
+			    <span class="ui-icon-search" id="search_2" onclick="javascript:WSTSearch(<?php if(CONTROLLER_NAME=='Shops'){ echo 1;}?>);" style="display:none;"></span>
+				<div class="wst-search_inputs" id="search2" style="display:none;">
+			        <div class="wst-index_input">
+			        	<input value="{$searchKey}" type="text" placeholder="按关键字搜索<?php if(CONTROLLER_NAME=='Shops'){ echo '商店';}else{ echo '商品';}?>" autocapitalize="off" id="ui-icon-search">
+			        </div>
+			    </div>
+			    <button class="search_disappear" id="search_button" style="display:none;">取消</button>		    
+			</div>
+        </header>
+		<script type="text/javascript">
+		    $('.search-span').tap(function(){
+		        $('#search1').hide();
+		        WST.showHide(1,'#search2,#search_button');
+		        $('.searchs').removeClass('wst-index_search').addClass('wst-search_input');
+		        setTimeout(function(){ 
+		        	$('#search_1').hide();
+		        	$('#search_2').show();
+		        },300);
+		    });
+		    $('.search_disappear').tap(function(){
+		        WST.showHide('','#search2,#search_2,#search_button');
+		        $('.searchs').removeClass('wst-search_input').addClass('wst-index_search');
+		        WST.showHide(1,'#search1,#search_1');
+		    });
+		</script>

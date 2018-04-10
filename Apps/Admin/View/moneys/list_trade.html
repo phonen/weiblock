@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{$CONF['shopTitle']['fieldValue']}后台管理中心</title>
+      <link href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="__ROOT__/Apps/Admin/View/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+      <!--[if lt IE 9]>
+      <script src="__PUBLIC__/js/html5shiv.min.js"></script>
+      <script src="__PUBLIC__/js/respond.min.js"></script>
+      <![endif]-->
+      <script src="__PUBLIC__/js/jquery.min.js"></script>
+      <script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js"></script>
+      <script src="__PUBLIC__/js/common.js"></script>
+      <script src="__PUBLIC__/plugins/layer/layer.min.js"></script>
+      <script src="__PUBLIC__/plugins/plugins/plugins.js"></script>
+   </head>
+   <style>
+   *{box-sizing:content-box;}
+   </style>
+   <body class='wst-page'>
+     <form action='{:U('Admin/Trade/index')}' method='post' autocomplete="off">
+       <div class='wst-tbar' style='height:25px;'>
+       <div style='float:left;'><!--                   
+                          流水类型：<select name='moneyType'>
+				  <option value='-1'>全部</option>
+				  <option value='1' <if condition="$moneyType eq 1 ">selected</if>>收入</option>
+				  <option value='0' <if condition="$moneyType eq 0 ">selected</if>>支出</option>
+				</select>
+		 
+		   时间：
+		     <input type='text' id='startDate' class='laydate-icon' name='startDate' value='{$startDate}' style='width:100px' placeholder='开始日期' onclick='laydate({format: "YYYY-MM-DD"})'/>
+             <input type='text' id='endDate' class='laydate-icon' name='endDate' value='{$endDate}' style='width:100px' placeholder='结束日期' onclick='laydate({format: "YYYY-MM-DD"})'/>-->
+		关键字：<input type="text" name="key" style='width:120px;' value='{$key}'/>
+		<button type="submit" class="btn btn-primary glyphicon glyphicon-search">查询</button> 
+       </div>
+       </form>
+       <div class="wst-body"> 
+        <table class="table table-hover table-striped table-bordered wst-list">
+           <thead>
+             <tr>
+               <th width='10'>&nbsp;</th>
+               <th width='130'>会员ID</th>
+               <th width='130'>会员</th>
+			   <th width='100'>交易单号</th>
+			   <th width='100'>下注金额</th>
+			   <th width='80'>中奖金额</th>
+			   <th width='*'>手续费</th>
+			   <th width='150'>选择数字</th>
+			   <th width='150'>微信单号</th>
+			   <th width='150'>支付时间</th>
+			   <th width='150'>下单时间</th>
+			   <th width='150'>游戏类型</th>
+			   <th width='150'>选择类型</th>
+             </tr>
+           </thead>
+           <tbody>
+            <volist name="Page['root']" id="vo" key='i'>
+             <tr>
+               <td>{$i}</td>
+			   <td>{$vo['user_id']}</td>
+               <td>{$vo['loginName']}</td>
+               <td>{$vo['trade_sn']}</td>
+               <td>{$vo['trade_money']}</td>
+               <td>{$vo['draw_money']}</td>
+               <td>{$vo['poundage_money']}</td>
+               <td>{$vo['selectd_num']}</td>
+               <td>{$vo['weipay_sn']}</td>
+               <td><?php echo $vo['pay_time']?date('Y-m-d H:i:s',$vo['pay_time']):"";?></td>
+               <td><?php echo $vo['add_time']?date('Y-m-d H:i:s',$vo['add_time']):"";?></td>
+               <td>
+                   <if condition="$vo['game_type'] eq 0">埋雷</if>
+                   <if condition="$vo['game_type'] eq 1">斗牛</if>
+                   <if condition="$vo['game_type'] eq 2">八戒夺宝</if>
+               </td>
+               <td>
+                   <?php echo getGameTypeName($vo['game_type'],$vo['type']);?>
+               </td>
+             </tr>
+             </volist>
+             <tr>
+                <td colspan='13' align='center'>{$Page['pager']}</td>
+             </tr>
+           </tbody>
+        </table>
+       </div>
+   </body>
+</html>

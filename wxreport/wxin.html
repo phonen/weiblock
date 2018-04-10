@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投诉</title>
+     <meta name="viewport" 
+           content="width=device-width,
+           initial-scale=1.0,
+           maximum-scale=1.0,
+           minimum-scale=1.0,
+           user-scalable=no">
+    <style type="text/css">
+        .list ul{
+            /* 外边距*/
+            margin:0;
+            /*内边距*/
+            padding: 0;
+            /*列表，风格，类型，没有*/
+            list-style-type: none;
+        }
+        .list li{
+            list-style:none;
+            text-align:center;
+        }
+        a{
+            text-decoration:none;
+            font-size: 15px; color: #cccccc;
+            text-align:center;
+        }
+        .title{
+            /*字体大小和颜色*/
+            font-size:22px;color:#333;
+            text-indent:10px;
+            padding-top:25px;
+        }
+        .bt{
+            /*背景颜色*/
+            background:#ffffff;
+            height:45px;
+            line-height:35px;
+            width: 98%;
+            /*上边距0*/
+            margin: 0 auto;
+            display: block;
+            /*按钮变圆角*/
+            border-radius:6px;
+            /*按钮字体大小和颜色*/
+            font-size: 15px;color: #09bb07;
+            /*改变按钮阴影颜色*/
+           /* border:none;display:block;*/
+            border:1px solid #09bb07 ;
+        }
+        .img{
+            text-align:center
+        }
+        .btn{
+            /*上边距*/
+            margin:25px 0px;
+        }
+        .list{
+            /*上边距*/
+            margin:15px 0px;
+        }
+        input[type=button]{
+            -webkit-appearance:none;
+            outline:none
+        }
+    </style>
+    <script type="application/javascript">
+        function index() {
+            localStorage.removeItem('wxreport');
+            window.location.href = '/';
+        }
+    </script>
+</head>
+<body>
+<div class="img">
+    <img src="wx.png" height="85" width="90" >
+</div>
+<div class="title" align="center">
+    以停止访问该网页
+</div>
+<div class="list">
+    <ul>
+        <li><a  href="#"> 网页包含诱导分享、诱导关注内容，被多人投诉，为维护绿色上网环境，以停止访问</a></li>
+    </ul>
+</div>
+<div class="btn">
+    <input type="button" onclick="index()" value=" 申请恢复访问 " class="bt" />
+</div>
+</script>
+</body>
+</html>
